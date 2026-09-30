@@ -1,837 +1,976 @@
-#!/usr/bin/env python3
-
 import os
 import json
-import math
 import random
 import urllib.request
 import urllib.error
-from datetime import date, timedelta
-from xml.sax.saxutils import escape
+from datetime import datetime, timedelta
 
 
 # ============================================================
-# CONFIG
+# CONFIGURATION
 # ============================================================
-
-USERNAME = os.environ.get("GH_USER", "MinalMaurya")
-TOKEN = os.environ.get("GH_TOKEN")
-
-OUTPUT = "assets/pixel-universe.svg"
 
 WIDTH = 1400
 HEIGHT = 560
 
-# Contribution calendar area
-GRID_X = 135
-GRID_Y = 185
+GH_TOKEN = os.environ.get("GH_TOKEN")
+GH_USER = os.environ.get("GH_USER", "MinalMaurya")
 
-CELL_W = 22
-CELL_H = 25
+OUTPUT_FILE = "assets/pixel-universe.svg"
 
-WEEKS = 53
-DAYS = 7
-
-GRID_WIDTH = (WEEKS - 1) * CELL_W
-GRID_HEIGHT = (DAYS - 1) * CELL_H
-
-BG = "#030817"
-BG2 = "#07152F"
-
-BLUE = "#78A9FF"
-LIGHT_BLUE = "#BBD7FF"
-LAVENDER = "#A995FF"
-GOLD = "#FFD27A"
-WHITE = "#F5F8FF"
-
-random.seed(42)
+random.seed(2026)
 
 
 # ============================================================
-# GITHUB API
+# GITHUB CONTRIBUTION DATA
 # ============================================================
 
-def github_graphql(query, variables):
-    if not TOKEN:
-        raise RuntimeError("GH_TOKEN is missing.")
-
-    data = json.dumps({
-        "query": query,
-        "variables": variables
-    }).encode("utf-8")
-
-    request = urllib.request.Request(
-        "https://api.github.com/graphql",
-        data=data,
-        headers={
-            "Authorization": f"bearer {TOKEN}",
-            "Content-Type": "application/json",
-            "User-Agent": "MinalMaurya-Pixel-Universe"
-        }
-    )
-
-    with urllib.request.urlopen(request) as response:
-        result = json.loads(response.read().decode("utf-8"))
-
-    if "errors" in result:
-        raise RuntimeError(json.dumps(result["errors"], indent=2))
-
-    return result
-
-
-def get_contributions():
-    today = date.today()
-    start = today - timedelta(days=364)
-
-    query = """
-    query($login: String!, $from: DateTime!, $to: DateTime!) {
-      user(login: $login) {
-        contributionsCollection(
-          from: $from
-          to: $to
-        ) {
-          contributionCalendar {
-            totalContributions
-            weeks {
-              contributionDays {
-                date
-                contributionCount
-                contributionLevel
-              }
-            }
+QUERY = """
+query($login: String!) {
+  user(login: $login) {
+    contributionsCollection {
+      contributionCalendar {
+        totalContributions
+        weeks {
+          contributionDays {
+            contributionCount
+            date
           }
         }
       }
     }
-    """
+  }
+}
+"""
 
-    result = github_graphql(
-        query,
-        {
-            "login": USERNAME,
-            "from": f"{start.isoformat()}T00:00:00Z",
-            "to": f"{today.isoformat()}T23:59:59Z"
+
+def get_contributions():
+    if not GH_TOKEN:
+        raise RuntimeError("GH_TOKEN environment variable is missing.")
+
+    payload = json.dumps({
+        "query": QUERY,
+        "variables": {
+            "login": GH_USER
         }
+    }).encode("utf-8")
+
+    request = urllib.request.Request(
+        "https://api.github.com/graphql",
+        data=payload,
+        headers={
+            "Authorization": f"Bearer {GH_TOKEN}",
+            "Content-Type": "application/json",
+            "User-Agent": "pixel-universe-generator"
+        },
+        method="POST"
     )
 
-    calendar = (
-        result["data"]["user"]
-        ["contributionsCollection"]
-        ["contributionCalendar"]
-    )
+    try:
+        with urllib.request.urlopen(request) as response:
+            data = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as error:
+        body = error.read().decode("utf-8", errors="ignore")
+        raise RuntimeError(
+            f"GitHub API request failed: {error.code}\n{body}"
+        )
 
-    days = []
+    if "errors" in data:
+        raise RuntimeError(json.dumps(data["errors"], indent=2))
+
+    calendar = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+
+    contributions = []
 
     for week in calendar["weeks"]:
-        for item in week["contributionDays"]:
-            days.append({
-                "date": item["date"],
-                "count": item["contributionCount"],
-                "level": item["contributionLevel"]
+        for day in week["contributionDays"]:
+            contributions.append({
+                "date": day["date"],
+                "count": day["contributionCount"]
             })
 
-    # Keep exactly the latest 365 days
-    days = sorted(days, key=lambda x: x["date"])[-365:]
-
-    return days, calendar["totalContributions"]
+    return contributions, calendar["totalContributions"]
 
 
 # ============================================================
 # SVG HELPERS
 # ============================================================
 
-def svg_escape(value):
-    return escape(str(value), {'"': "&quot;"})
+def esc(text):
+    return (
+        str(text)
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+    )
 
 
 def star_points(cx, cy, outer, inner, points=4, rotation=-90):
-    result = []
+    values = []
 
     for i in range(points * 2):
-        angle = math.radians(
-            rotation + (360 / (points * 2)) * i
-        )
-
+        angle = rotation + (360 / (points * 2)) * i
         radius = outer if i % 2 == 0 else inner
 
-        x = cx + math.cos(angle) * radius
-        y = cy + math.sin(angle) * radius
+        import math
 
-        result.append(f"{x:.2f},{y:.2f}")
+        x = cx + math.cos(math.radians(angle)) * radius
+        y = cy + math.sin(math.radians(angle)) * radius
 
-    return " ".join(result)
+        values.append(f"{x:.2f},{y:.2f}")
 
-
-def four_point_star(cx, cy, size):
-    """
-    Elegant four-point sparkle.
-    """
-    return f"""
-    <path
-      d="
-        M {cx:.2f} {cy-size:.2f}
-        C {cx+size*0.16:.2f} {cy-size*0.16:.2f},
-          {cx+size*0.16:.2f} {cy-size*0.16:.2f},
-          {cx+size:.2f} {cy:.2f}
-        C {cx+size*0.16:.2f} {cy+size*0.16:.2f},
-          {cx+size*0.16:.2f} {cy+size*0.16:.2f},
-          {cx:.2f} {cy+size:.2f}
-        C {cx-size*0.16:.2f} {cy+size*0.16:.2f},
-          {cx-size*0.16:.2f} {cy+size*0.16:.2f},
-          {cx-size:.2f} {cy:.2f}
-        C {cx-size*0.16:.2f} {cy-size*0.16:.2f},
-          {cx-size*0.16:.2f} {cy-size*0.16:.2f},
-          {cx:.2f} {cy-size:.2f}
-        Z
-      "
-    />
-    """
+    return " ".join(values)
 
 
 def diamond_star(cx, cy, size):
-    return f"""
-    <polygon
-      points="{star_points(cx, cy, size, size * 0.25, 4)}"
-    />
-    """
+    return (
+        f"M {cx:.2f},{cy-size:.2f} "
+        f"L {cx+size*0.34:.2f},{cy-size*0.34:.2f} "
+        f"L {cx+size:.2f},{cy:.2f} "
+        f"L {cx+size*0.34:.2f},{cy+size*0.34:.2f} "
+        f"L {cx:.2f},{cy+size:.2f} "
+        f"L {cx-size*0.34:.2f},{cy+size*0.34:.2f} "
+        f"L {cx-size:.2f},{cy:.2f} "
+        f"L {cx-size*0.34:.2f},{cy-size*0.34:.2f} Z"
+    )
 
 
-def six_point_star(cx, cy, size):
-    return f"""
-    <polygon
-      points="{star_points(cx, cy, size, size * 0.38, 6)}"
-    />
-    """
-
-
-def eight_point_star(cx, cy, size):
-    return f"""
-    <polygon
-      points="{star_points(cx, cy, size, size * 0.42, 8)}"
-    />
-    """
-
-
-def glow_circle(cx, cy, radius, color, opacity):
-    return f"""
-    <circle
-      cx="{cx:.2f}"
-      cy="{cy:.2f}"
-      r="{radius:.2f}"
-      fill="{color}"
-      opacity="{opacity}"
-      filter="url(#glow)"
-    />
-    """
+def glow_circle(cx, cy, r, color, opacity=0.3):
+    return (
+        f'<circle cx="{cx}" cy="{cy}" r="{r}" '
+        f'fill="{color}" opacity="{opacity}" filter="url(#softGlow)"/>'
+    )
 
 
 # ============================================================
-# STAR DESIGN
+# COSMIC BACKGROUND
 # ============================================================
 
-def contribution_star(cx, cy, count, day):
-    """
-    Returns the SVG for a contribution star.
+def background_elements():
+    parts = []
 
-    1       = tiny four-point star
-    2-3     = diamond / four-point
-    4-6     = six-point star
-    7-9     = eight-point star
-    10+     = large special gold star
-    """
+    # --------------------------------------------------------
+    # Deep space base
+    # --------------------------------------------------------
 
-    if count <= 0:
-        return ""
+    parts.append(
+        '<rect width="1400" height="560" fill="url(#spaceGradient)"/>'
+    )
 
-    title = f"{day} — {count} contribution"
-    if count != 1:
-        title += "s"
+    # --------------------------------------------------------
+    # Large nebula clouds
+    # --------------------------------------------------------
+
+    nebulae = [
+        (230, 260, 360, 150, "#193b86", 0.24),
+        (560, 170, 420, 190, "#392b8f", 0.20),
+        (900, 245, 460, 190, "#254d9f", 0.20),
+        (1180, 180, 330, 180, "#552c9d", 0.17),
+        (700, 470, 600, 170, "#352879", 0.22),
+        (180, 470, 360, 130, "#214c9c", 0.18),
+    ]
+
+    for cx, cy, rx, ry, color, opacity in nebulae:
+        parts.append(
+            f'<ellipse cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}" '
+            f'fill="{color}" opacity="{opacity}" '
+            f'filter="url(#nebulaBlur)"/>'
+        )
+
+    # --------------------------------------------------------
+    # Milky Way band
+    # --------------------------------------------------------
+
+    parts.append(
+        '<path d="M -100 400 '
+        'C 250 190, 480 130, 760 250 '
+        'C 1000 350, 1190 230, 1500 60" '
+        'fill="none" stroke="url(#milkyGradient)" '
+        'stroke-width="125" opacity="0.13" '
+        'filter="url(#milkyBlur)"/>'
+    )
+
+    parts.append(
+        '<path d="M -80 385 '
+        'C 260 190, 500 155, 770 255 '
+        'C 1010 335, 1210 215, 1490 55" '
+        'fill="none" stroke="url(#milkyGradient2)" '
+        'stroke-width="48" opacity="0.14" '
+        'filter="url(#milkyBlur)"/>'
+    )
+
+    # --------------------------------------------------------
+    # Tiny background stars
+    # --------------------------------------------------------
+
+    for _ in range(145):
+        x = random.uniform(20, WIDTH - 20)
+        y = random.uniform(15, 480)
+
+        # Keep background stars away from the contribution grid.
+        if 175 < x < 1270 and 215 < y < 415:
+            continue
+
+        radius = random.choice([
+            0.45, 0.55, 0.65, 0.8, 1.0
+        ])
+
+        opacity = random.uniform(0.25, 0.75)
+
+        parts.append(
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" '
+            f'r="{radius}" fill="#dce9ff" opacity="{opacity:.2f}"/>'
+        )
+
+    # --------------------------------------------------------
+    # A few brighter stars
+    # --------------------------------------------------------
+
+    bright_stars = [
+        (110, 90, 1.7),
+        (205, 160, 1.3),
+        (690, 80, 1.6),
+        (820, 145, 1.4),
+        (1060, 95, 1.8),
+        (1290, 145, 1.5),
+        (1330, 290, 1.3),
+        (90, 315, 1.2),
+    ]
+
+    for x, y, r in bright_stars:
+        parts.append(
+            f'<circle cx="{x}" cy="{y}" r="{r}" '
+            f'fill="#ffffff" opacity="0.85"/>'
+        )
+
+        parts.append(
+            f'<circle cx="{x}" cy="{y}" r="{r*3.2}" '
+            f'fill="#9dbaff" opacity="0.12" filter="url(#softGlow)"/>'
+        )
+
+    return parts
+
+
+# ============================================================
+# PLANETS
+# ============================================================
+
+def planet_elements():
+    parts = []
+
+    # Large planet - top right
+    parts.append(
+        '<circle cx="1280" cy="78" r="72" fill="url(#planetGradient)" '
+        'opacity="0.92"/>'
+    )
+
+    parts.append(
+        '<ellipse cx="1280" cy="78" rx="112" ry="28" '
+        'fill="none" stroke="#7088ff" stroke-width="2" '
+        'opacity="0.50" transform="rotate(-12 1280 78)"/>'
+    )
+
+    parts.append(
+        '<ellipse cx="1280" cy="78" rx="105" ry="24" '
+        'fill="none" stroke="#a58cff" stroke-width="1" '
+        'opacity="0.35" transform="rotate(-12 1280 78)"/>'
+    )
+
+    # Small planet - left
+    parts.append(
+        '<circle cx="90" cy="205" r="25" fill="url(#smallPlanet)" '
+        'opacity="0.90"/>'
+    )
+
+    parts.append(
+        '<ellipse cx="90" cy="205" rx="39" ry="9" '
+        'fill="none" stroke="#668cff" stroke-width="1" '
+        'opacity="0.35" transform="rotate(-15 90 205)"/>'
+    )
+
+    # Small distant planet
+    parts.append(
+        '<circle cx="1360" cy="170" r="14" '
+        'fill="url(#tinyPlanet)" opacity="0.75"/>'
+    )
+
+    return parts
+
+
+# ============================================================
+# SHOOTING STARS
+# ============================================================
+
+def shooting_stars():
+    parts = []
+
+    stars = [
+        (1110, 92, 1025, 52),
+        (470, 470, 560, 420),
+        (1360, 320, 1290, 375),
+        (760, 120, 700, 86),
+    ]
+
+    for x1, y1, x2, y2 in stars:
+        parts.append(
+            f'<line x1="{x1}" y1="{y1}" '
+            f'x2="{x2}" y2="{y2}" '
+            f'stroke="url(#shootGradient)" '
+            f'stroke-width="2" opacity="0.65"/>'
+        )
+
+        parts.append(
+            f'<circle cx="{x1}" cy="{y1}" r="2.2" '
+            f'fill="#ffffff" opacity="0.95" '
+            f'filter="url(#softGlow)"/>'
+        )
+
+    return parts
+
+
+# ============================================================
+# COSMIC CLOUDS
+# ============================================================
+
+def cloud_cluster(x, y, scale=1.0):
+    parts = []
+
+    circles = [
+        (-55, 10, 32),
+        (-30, -12, 38),
+        (0, -20, 44),
+        (35, -5, 35),
+        (65, 12, 30),
+        (25, 22, 48),
+        (-15, 25, 42),
+    ]
+
+    for dx, dy, r in circles:
+        parts.append(
+            f'<circle cx="{x + dx*scale:.1f}" '
+            f'cy="{y + dy*scale:.1f}" '
+            f'r="{r*scale:.1f}" '
+            f'fill="url(#cloudGradient)" '
+            f'opacity="0.55" '
+            f'filter="url(#cloudBlur)"/>'
+        )
+
+    return parts
+
+
+def cloud_elements():
+    parts = []
+
+    parts.extend(cloud_cluster(70, 475, 1.0))
+    parts.extend(cloud_cluster(270, 495, 0.85))
+    parts.extend(cloud_cluster(1120, 490, 1.0))
+    parts.extend(cloud_cluster(1320, 470, 0.85))
+
+    return parts
+
+
+# ============================================================
+# MOUNTAIN LANDSCAPE
+# ============================================================
+
+def mountain_elements():
+    parts = []
+
+    # Far mountains
+    parts.append(
+        '<path d="M 0 525 '
+        'L 80 465 L 145 510 '
+        'L 225 440 L 310 510 '
+        'L 390 455 L 470 520 '
+        'L 555 445 L 640 515 '
+        'L 720 455 L 800 515 '
+        'L 890 450 L 980 520 '
+        'L 1080 440 L 1160 510 '
+        'L 1250 455 L 1320 505 '
+        'L 1400 445 L 1400 560 L 0 560 Z" '
+        'fill="url(#farMountain)" opacity="0.72"/>'
+    )
+
+    # Main mountain range
+    parts.append(
+        '<path d="M 0 555 '
+        'L 90 505 '
+        'L 145 530 '
+        'L 225 455 '
+        'L 300 535 '
+        'L 385 485 '
+        'L 465 545 '
+        'L 560 470 '
+        'L 640 540 '
+        'L 725 480 '
+        'L 810 545 '
+        'L 900 475 '
+        'L 990 535 '
+        'L 1080 465 '
+        'L 1170 540 '
+        'L 1260 480 '
+        'L 1330 530 '
+        'L 1400 470 '
+        'L 1400 560 L 0 560 Z" '
+        'fill="url(#mountainGradient)"/>'
+    )
+
+    # Mountain highlights
+    parts.append(
+        '<path d="M 90 505 L 145 530 L 225 455 '
+        'L 185 505 L 145 495 Z" '
+        'fill="#7d91db" opacity="0.16"/>'
+    )
+
+    parts.append(
+        '<path d="M 560 470 L 640 540 L 610 500 '
+        'L 585 500 Z" '
+        'fill="#8a9de8" opacity="0.14"/>'
+    )
+
+    parts.append(
+        '<path d="M 1080 465 L 1170 540 L 1125 495 '
+        'L 1098 500 Z" '
+        'fill="#8b9df0" opacity="0.13"/>'
+    )
+
+    return parts
+
+
+# ============================================================
+# CONTRIBUTION GRID
+# ============================================================
+
+GRID_X = 185
+GRID_Y = 255
+
+CELL_W = 21
+CELL_H = 25
+
+GRID_WEEKS = 53
+GRID_DAYS = 7
+
+
+def parse_date(value):
+    return datetime.strptime(value, "%Y-%m-%d").date()
+
+
+def contribution_star(cx, cy, count):
+    elements = []
 
     # --------------------------------------------------------
     # 1 contribution
     # --------------------------------------------------------
+
     if count == 1:
         size = 4.2
 
-        return f"""
-        <g class="contribution-star">
-          <title>{svg_escape(title)}</title>
+        elements.append(
+            f'<polygon points="{star_points(cx, cy, size, 1.3, 4)}" '
+            f'fill="#9ec5ff" opacity="0.92"/>'
+        )
 
-          <circle
-            cx="{cx:.2f}"
-            cy="{cy:.2f}"
-            r="1.8"
-            fill="{LIGHT_BLUE}"
-            opacity="0.28"
-          />
-
-          <g fill="{LIGHT_BLUE}" opacity="0.90">
-            {four_point_star(cx, cy, size)}
-          </g>
-        </g>
-        """
+        return elements
 
     # --------------------------------------------------------
-    # 2-3 contributions
+    # 2–3 contributions
     # --------------------------------------------------------
-    if count <= 3:
-        size = 5.4
 
-        return f"""
-        <g class="contribution-star">
-          <title>{svg_escape(title)}</title>
+    if 2 <= count <= 3:
+        size = 5.2
 
-          {glow_circle(cx, cy, 7, BLUE, 0.12)}
+        elements.append(
+            f'<path d="{diamond_star(cx, cy, size)}" '
+            f'fill="#8bb9ff" opacity="0.96"/>'
+        )
 
-          <g fill="{LIGHT_BLUE}" opacity="0.96">
-            {diamond_star(cx, cy, size)}
-          </g>
-        </g>
-        """
+        elements.append(
+            glow_circle(cx, cy, 10, "#6da4ff", 0.16)
+        )
 
-    # --------------------------------------------------------
-    # 4-6 contributions
-    # --------------------------------------------------------
-    if count <= 6:
-        size = 7.0
-
-        return f"""
-        <g class="contribution-star">
-          <title>{svg_escape(title)}</title>
-
-          {glow_circle(cx, cy, 11, BLUE, 0.15)}
-
-          <g fill="{BLUE}" opacity="0.98">
-            {six_point_star(cx, cy, size)}
-          </g>
-
-          <circle
-            cx="{cx:.2f}"
-            cy="{cy:.2f}"
-            r="1.2"
-            fill="{WHITE}"
-          />
-        </g>
-        """
+        return elements
 
     # --------------------------------------------------------
-    # 7-9 contributions
+    # 4–6 contributions
     # --------------------------------------------------------
-    if count <= 9:
-        size = 9.0
 
-        return f"""
-        <g class="contribution-star">
-          <title>{svg_escape(title)}</title>
+    if 4 <= count <= 6:
+        size = 6.5
 
-          {glow_circle(cx, cy, 16, LAVENDER, 0.18)}
+        elements.append(
+            f'<polygon points="{star_points(cx, cy, size, 2.2, 6)}" '
+            f'fill="#8fb9ff" opacity="0.98"/>'
+        )
 
-          <g fill="{LAVENDER}" opacity="1">
-            {eight_point_star(cx, cy, size)}
-          </g>
+        elements.append(
+            glow_circle(cx, cy, 13, "#709eff", 0.20)
+        )
 
-          <circle
-            cx="{cx:.2f}"
-            cy="{cy:.2f}"
-            r="1.7"
-            fill="{WHITE}"
-          />
-        </g>
-        """
+        return elements
+
+    # --------------------------------------------------------
+    # 7–9 contributions
+    # --------------------------------------------------------
+
+    if 7 <= count <= 9:
+        size = 8.5
+
+        elements.append(
+            f'<polygon points="{star_points(cx, cy, size, 2.4, 8)}" '
+            f'fill="#c4b3ff" opacity="1"/>'
+        )
+
+        elements.append(
+            glow_circle(cx, cy, 17, "#8d75ff", 0.24)
+        )
+
+        return elements
 
     # --------------------------------------------------------
     # 10+ contributions
     # --------------------------------------------------------
-    size = min(13.5, 9.5 + count * 0.25)
 
-    return f"""
-    <g class="contribution-star">
-      <title>{svg_escape(title)}</title>
+    size = min(12.5, 8.5 + (count - 10) * 0.25)
 
-      {glow_circle(cx, cy, 23, GOLD, 0.20)}
-      {glow_circle(cx, cy, 11, GOLD, 0.15)}
-
-      <g fill="{GOLD}" opacity="1">
-        {four_point_star(cx, cy, size)}
-      </g>
-
-      <circle
-        cx="{cx:.2f}"
-        cy="{cy:.2f}"
-        r="2.2"
-        fill="{WHITE}"
-      />
-    </g>
-    """
-
-
-# ============================================================
-# BACKGROUND
-# ============================================================
-
-def create_background():
-    parts = []
-
-    parts.append(f"""
-    <defs>
-
-      <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="{BG}" />
-        <stop offset="50%" stop-color="{BG2}" />
-        <stop offset="100%" stop-color="#020611" />
-      </linearGradient>
-
-      <radialGradient id="nebulaBlue">
-        <stop offset="0%" stop-color="#2457C5" stop-opacity="0.22" />
-        <stop offset="100%" stop-color="#2457C5" stop-opacity="0" />
-      </radialGradient>
-
-      <radialGradient id="nebulaPurple">
-        <stop offset="0%" stop-color="#6E4FCB" stop-opacity="0.18" />
-        <stop offset="100%" stop-color="#6E4FCB" stop-opacity="0" />
-      </radialGradient>
-
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="3" />
-      </filter>
-
-      <filter id="softGlow">
-        <feGaussianBlur stdDeviation="7" />
-      </filter>
-
-      <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#7EA9FF" stop-opacity="0.04" />
-        <stop offset="50%" stop-color="#A995FF" stop-opacity="0.30" />
-        <stop offset="100%" stop-color="#7EA9FF" stop-opacity="0.04" />
-      </linearGradient>
-
-    </defs>
-
-    <rect
-      width="{WIDTH}"
-      height="{HEIGHT}"
-      rx="22"
-      fill="url(#background)"
-    />
-
-    <!-- Very subtle cosmic atmosphere -->
-    <ellipse
-      cx="260"
-      cy="130"
-      rx="390"
-      ry="170"
-      fill="url(#nebulaBlue)"
-    />
-
-    <ellipse
-      cx="1120"
-      cy="430"
-      rx="420"
-      ry="190"
-      fill="url(#nebulaPurple)"
-    />
-
-    <ellipse
-      cx="760"
-      cy="250"
-      rx="500"
-      ry="180"
-      fill="url(#nebulaBlue)"
-      opacity="0.35"
-    />
-    """)
-
-    # Decorative stars ONLY outside the contribution grid
-    decorative = [
-        (75, 110, 1.2),
-        (110, 150, 0.8),
-        (1210, 100, 1.0),
-        (1280, 155, 1.3),
-        (1335, 75, 0.7),
-        (105, 430, 1.1),
-        (1260, 430, 0.9),
-        (1320, 365, 1.2),
-        (520, 90, 0.7),
-        (900, 90, 0.8),
-        (1160, 500, 1.0),
-    ]
-
-    for x, y, r in decorative:
-        parts.append(
-            f"""
-            <circle
-              cx="{x}"
-              cy="{y}"
-              r="{r}"
-              fill="{LIGHT_BLUE}"
-              opacity="0.45"
-            />
-            """
-        )
-
-    # Shooting stars
-    shooting = [
-        (1040, 80, 95, 35),
-        (1225, 290, 90, 35),
-        (300, 470, 75, 30),
-    ]
-
-    for x, y, dx, dy in shooting:
-        parts.append(
-            f"""
-            <line
-              x1="{x}"
-              y1="{y}"
-              x2="{x+dx}"
-              y2="{y+dy}"
-              stroke="{LAVENDER}"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              opacity="0.55"
-            />
-
-            <circle
-              cx="{x}"
-              cy="{y}"
-              r="2.2"
-              fill="{WHITE}"
-              opacity="0.9"
-            />
-            """
-        )
-
-    # Small planet in upper right
-    parts.append("""
-    <circle
-      cx="1290"
-      cy="80"
-      r="35"
-      fill="#142C64"
-      opacity="0.8"
-    />
-
-    <ellipse
-      cx="1290"
-      cy="80"
-      rx="58"
-      ry="15"
-      fill="none"
-      stroke="#718DFF"
-      stroke-width="1"
-      opacity="0.30"
-      transform="rotate(-15 1290 80)"
-    />
-    """)
-
-    return "\n".join(parts)
-
-
-# ============================================================
-# MAIN SVG
-# ============================================================
-
-def create_svg(days, total_contributions):
-    svg = []
-
-    svg.append(
-        f'<svg xmlns="http://www.w3.org/2000/svg" '
-        f'width="{WIDTH}" height="{HEIGHT}" '
-        f'viewBox="0 0 {WIDTH} {HEIGHT}">'
+    elements.append(
+        f'<polygon points="{star_points(cx, cy, size, size*0.28, 4)}" '
+        f'fill="#ffe1a0" opacity="1"/>'
     )
 
-    svg.append(create_background())
+    elements.append(
+        glow_circle(cx, cy, size * 2.0, "#ffc85a", 0.28)
+    )
+
+    # central bright point
+    elements.append(
+        f'<circle cx="{cx}" cy="{cy}" r="1.5" '
+        f'fill="#ffffff" opacity="0.98"/>'
+    )
+
+    return elements
+
+
+def grid_elements(contributions):
+    parts = []
 
     # --------------------------------------------------------
-    # Header
+    # Contribution data indexed by date
     # --------------------------------------------------------
 
-    svg.append(f"""
-    <text
-      x="55"
-      y="58"
-      fill="{WHITE}"
-      font-family="Arial, Helvetica, sans-serif"
-      font-size="24"
-      font-weight="600"
-    >
-      Minal's Coding Universe
-    </text>
+    data = {
+        item["date"]: item["count"]
+        for item in contributions
+    }
 
-    <text
-      x="56"
-      y="82"
-      fill="{LIGHT_BLUE}"
-      font-family="Arial, Helvetica, sans-serif"
-      font-size="12"
-      opacity="0.70"
-    >
-      Small steps ✦ Big dreams ✦ Endless code
-    </text>
-    """)
+    dates = sorted(parse_date(item["date"]) for item in contributions)
+
+    if not dates:
+        return parts
+
+    first_date = dates[0]
+
+    # Align to Sunday.
+    start_date = first_date - timedelta(days=(first_date.weekday() + 1) % 7)
 
     # --------------------------------------------------------
-    # Month labels
+    # Calendar labels
     # --------------------------------------------------------
 
-    month_positions = [
-        ("Jan", 0),
-        ("Feb", 4),
-        ("Mar", 8),
-        ("Apr", 13),
-        ("May", 17),
-        ("Jun", 22),
-        ("Jul", 26),
-        ("Aug", 31),
-        ("Sep", 35),
-        ("Oct", 40),
-        ("Nov", 44),
-        ("Dec", 49),
+    month_seen = set()
+
+    for week in range(GRID_WEEKS):
+        current = start_date + timedelta(days=week * 7)
+
+        for day_index in range(7):
+            day = current + timedelta(days=day_index)
+
+            if day.day <= 7:
+                month_name = day.strftime("%b")
+
+                if month_name not in month_seen:
+                    month_seen.add(month_name)
+
+                    x = GRID_X + week * CELL_W
+
+                    parts.append(
+                        f'<text x="{x}" y="{GRID_Y - 28}" '
+                        f'fill="#8fa8d6" font-size="13" '
+                        f'font-family="Arial, sans-serif" '
+                        f'text-anchor="middle" opacity="0.90">'
+                        f'{month_name}</text>'
+                    )
+
+    # --------------------------------------------------------
+    # Weekday labels
+    # --------------------------------------------------------
+
+    weekdays = [
+        ("Mon", 1),
+        ("Wed", 3),
+        ("Fri", 5),
+        ("Sun", 0),
     ]
 
-    for month, week in month_positions:
-        x = GRID_X + week * CELL_W
+    for label, sunday_index in weekdays:
+        if label == "Sun":
+            row = 0
+        else:
+            row = sunday_index
 
-        svg.append(
-            f"""
-            <text
-              x="{x}"
-              y="{GRID_Y - 34}"
-              fill="{LIGHT_BLUE}"
-              font-family="Arial, Helvetica, sans-serif"
-              font-size="11"
-              opacity="0.70"
-            >
-              {month}
-            </text>
-            """
+        y = GRID_Y + row * CELL_H + 4
+
+        parts.append(
+            f'<text x="{GRID_X - 25}" y="{y}" '
+            f'fill="#7f98c5" font-size="11" '
+            f'font-family="Arial, sans-serif" '
+            f'text-anchor="end" opacity="0.85">'
+            f'{label}</text>'
         )
 
     # --------------------------------------------------------
-    # Day labels
+    # Every calendar day gets a tiny dot
     # --------------------------------------------------------
 
-    day_names = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    active_points = []
 
-    for i, name in enumerate(day_names):
-        y = GRID_Y + i * CELL_H + 4
-
-        svg.append(
-            f"""
-            <text
-              x="{GRID_X - 42}"
-              y="{y}"
-              fill="{LIGHT_BLUE}"
-              font-family="Arial, Helvetica, sans-serif"
-              font-size="10"
-              opacity="0.48"
-            >
-              {name}
-            </text>
-            """
-        )
-
-    # --------------------------------------------------------
-    # Create calendar coordinates
-    # --------------------------------------------------------
-
-    positions = {}
-
-    # GitHub calendar weeks begin according to the returned data.
-    # We map the 365 actual days sequentially into 53 columns x 7 rows.
-    for index, item in enumerate(days):
-        week = index // 7
-        day = index % 7
-
-        if week >= WEEKS:
-            break
-
-        x = GRID_X + week * CELL_W
-        y = GRID_Y + day * CELL_H
-
-        positions[item["date"]] = {
-            "x": x,
-            "y": y,
-            "count": item["count"],
-        }
-
-    # --------------------------------------------------------
-    # Subtle 365-day grid
-    # --------------------------------------------------------
-
-    for item in days:
-        pos = positions.get(item["date"])
-
-        if not pos:
-            continue
-
-        x = pos["x"]
-        y = pos["y"]
-
-        # ALL days have a tiny dot.
-        # It is deliberately very faint.
-        opacity = 0.14
-
-        # Only a very small random subset receives a tiny
-        # atmospheric highlight.
-        special = (
-            item["count"] == 0
-            and random.random() < 0.10
-        )
-
-        if special:
-            opacity = 0.23
-
-        svg.append(
-            f"""
-            <circle
-              cx="{x:.2f}"
-              cy="{y:.2f}"
-              r="1.15"
-              fill="{LIGHT_BLUE}"
-              opacity="{opacity}"
-            />
-            """
-        )
-
-    # --------------------------------------------------------
-    # Contribution constellation lines
-    # --------------------------------------------------------
-
-    # Connect nearby ACTIVE contribution days.
-    # We keep this intentionally sparse.
-    active = [
-        item for item in days
-        if item["count"] > 0
-    ]
-
-    for i in range(len(active) - 1):
-        current = active[i]
-        nxt = active[i + 1]
-
-        p1 = positions.get(current["date"])
-        p2 = positions.get(nxt["date"])
-
-        if not p1 or not p2:
-            continue
-
-        # Calculate distance.
-        distance = math.sqrt(
-            (p2["x"] - p1["x"]) ** 2 +
-            (p2["y"] - p1["y"]) ** 2
-        )
-
-        # Only connect reasonably close contribution days.
-        if distance <= CELL_W * 2.5:
-
-            opacity = 0.18
-
-            # Higher activity = slightly more visible line
-            if current["count"] >= 4 and nxt["count"] >= 4:
-                opacity = 0.25
-
-            svg.append(
-                f"""
-                <line
-                  x1="{p1['x']:.2f}"
-                  y1="{p1['y']:.2f}"
-                  x2="{p2['x']:.2f}"
-                  y2="{p2['y']:.2f}"
-                  stroke="url(#lineGradient)"
-                  stroke-width="0.8"
-                  opacity="{opacity}"
-                />
-                """
+    for week in range(GRID_WEEKS):
+        for day_index in range(GRID_DAYS):
+            current = start_date + timedelta(
+                days=week * 7 + day_index
             )
 
-    # --------------------------------------------------------
-    # Contribution stars
-    # --------------------------------------------------------
+            date_string = current.isoformat()
 
-    for item in days:
+            x = GRID_X + week * CELL_W
+            y = GRID_Y + day_index * CELL_H
 
-        if item["count"] <= 0:
-            continue
+            count = data.get(date_string, 0)
 
-        pos = positions.get(item["date"])
+            # Don't draw days outside GitHub's returned year.
+            if date_string not in data:
+                parts.append(
+                    f'<circle cx="{x}" cy="{y}" r="1.15" '
+                    f'fill="#6883b8" opacity="0.22"/>'
+                )
 
-        if not pos:
-            continue
+                continue
 
-        svg.append(
-            contribution_star(
-                pos["x"],
-                pos["y"],
-                item["count"],
-                item["date"]
+            # ------------------------------------------------
+            # Zero contribution
+            # ------------------------------------------------
+
+            if count == 0:
+                parts.append(
+                    f'<circle cx="{x}" cy="{y}" r="1.25" '
+                    f'fill="#718bbd" opacity="0.26"/>'
+                )
+
+                # A few atmospheric zero-day highlights.
+                if random.random() < 0.08:
+                    parts.append(
+                        f'<circle cx="{x}" cy="{y}" r="3.8" '
+                        f'fill="#668fff" opacity="0.07" '
+                        f'filter="url(#softGlow)"/>'
+                    )
+
+                continue
+
+            # ------------------------------------------------
+            # Active contribution star
+            # ------------------------------------------------
+
+            active_points.append((x, y, count))
+
+            parts.append(
+                f'<g aria-label="{esc(date_string)}: '
+                f'{count} contribution(s)">'
             )
-        )
+
+            parts.extend(
+                contribution_star(x, y, count)
+            )
+
+            # SVG title is retained for renderers that support it.
+            parts.append(
+                f'<title>{esc(date_string)} — '
+                f'{count} contribution'
+                f'{"s" if count != 1 else ""}</title>'
+            )
+
+            parts.append("</g>")
+
+    # --------------------------------------------------------
+    # Constellation lines
+    # --------------------------------------------------------
+
+    for i in range(len(active_points)):
+        x1, y1, count1 = active_points[i]
+
+        for j in range(i + 1, len(active_points)):
+            x2, y2, count2 = active_points[j]
+
+            dx = abs(x2 - x1)
+            dy = abs(y2 - y1)
+
+            # Only connect nearby stars.
+            if dx <= CELL_W * 2.2 and dy <= CELL_H * 1.7:
+                opacity = 0.10
+
+                if count1 >= 4 or count2 >= 4:
+                    opacity = 0.15
+
+                parts.append(
+                    f'<line x1="{x1}" y1="{y1}" '
+                    f'x2="{x2}" y2="{y2}" '
+                    f'stroke="#7e9fe5" '
+                    f'stroke-width="0.65" '
+                    f'opacity="{opacity}"/>'
+                )
+
+    return parts
+
+
+# ============================================================
+# SVG DOCUMENT
+# ============================================================
+
+def build_svg(contributions, total):
+    parts = []
+
+    parts.append(
+        f'''<svg xmlns="http://www.w3.org/2000/svg"
+             width="{WIDTH}"
+             height="{HEIGHT}"
+             viewBox="0 0 {WIDTH} {HEIGHT}">
+'''
+    )
+
+    # --------------------------------------------------------
+    # DEFINITIONS
+    # --------------------------------------------------------
+
+    parts.append("""
+<defs>
+
+  <!-- Deep space -->
+  <linearGradient id="spaceGradient"
+                   x1="0" y1="0"
+                   x2="0" y2="1">
+    <stop offset="0%" stop-color="#020817"/>
+    <stop offset="42%" stop-color="#061536"/>
+    <stop offset="75%" stop-color="#0b1742"/>
+    <stop offset="100%" stop-color="#090b25"/>
+  </linearGradient>
+
+  <!-- Nebula -->
+  <linearGradient id="milkyGradient"
+                  x1="0" y1="0"
+                  x2="1" y2="0">
+    <stop offset="0%" stop-color="#1d5dff"/>
+    <stop offset="40%" stop-color="#7666ff"/>
+    <stop offset="75%" stop-color="#b27dff"/>
+    <stop offset="100%" stop-color="#234dff"/>
+  </linearGradient>
+
+  <linearGradient id="milkyGradient2"
+                  x1="0" y1="0"
+                  x2="1" y2="0">
+    <stop offset="0%" stop-color="#6a9bff"/>
+    <stop offset="50%" stop-color="#a58cff"/>
+    <stop offset="100%" stop-color="#4e7dff"/>
+  </linearGradient>
+
+  <!-- Shooting stars -->
+  <linearGradient id="shootGradient"
+                  x1="0" y1="0"
+                  x2="1" y2="0">
+    <stop offset="0%" stop-color="#8d7cff" stop-opacity="0"/>
+    <stop offset="75%" stop-color="#a8a5ff" stop-opacity="0.55"/>
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+  </linearGradient>
+
+  <!-- Planets -->
+  <radialGradient id="planetGradient"
+                  cx="35%" cy="30%">
+    <stop offset="0%" stop-color="#819eff"/>
+    <stop offset="38%" stop-color="#314aab"/>
+    <stop offset="75%" stop-color="#101b58"/>
+    <stop offset="100%" stop-color="#050a2b"/>
+  </radialGradient>
+
+  <radialGradient id="smallPlanet"
+                  cx="35%" cy="30%">
+    <stop offset="0%" stop-color="#668cff"/>
+    <stop offset="50%" stop-color="#1d438d"/>
+    <stop offset="100%" stop-color="#08183f"/>
+  </radialGradient>
+
+  <radialGradient id="tinyPlanet">
+    <stop offset="0%" stop-color="#7d91ff"/>
+    <stop offset="100%" stop-color="#172b78"/>
+  </radialGradient>
+
+  <!-- Clouds -->
+  <radialGradient id="cloudGradient"
+                  cx="50%" cy="40%">
+    <stop offset="0%" stop-color="#bca4ff"/>
+    <stop offset="45%" stop-color="#675bc7"/>
+    <stop offset="100%" stop-color="#25255f"/>
+  </radialGradient>
+
+  <!-- Mountains -->
+  <linearGradient id="farMountain"
+                  x1="0" y1="0"
+                  x2="0" y2="1">
+    <stop offset="0%" stop-color="#243d83"/>
+    <stop offset="100%" stop-color="#070d29"/>
+  </linearGradient>
+
+  <linearGradient id="mountainGradient"
+                  x1="0" y1="0"
+                  x2="0" y2="1">
+    <stop offset="0%" stop-color="#101b4a"/>
+    <stop offset="50%" stop-color="#080d2b"/>
+    <stop offset="100%" stop-color="#020511"/>
+  </linearGradient>
+
+  <!-- Glow -->
+  <filter id="softGlow"
+          x="-100%"
+          y="-100%"
+          width="300%"
+          height="300%">
+    <feGaussianBlur stdDeviation="4"/>
+  </filter>
+
+  <filter id="nebulaBlur"
+          x="-30%"
+          y="-30%"
+          width="160%"
+          height="160%">
+    <feGaussianBlur stdDeviation="55"/>
+  </filter>
+
+  <filter id="milkyBlur"
+          x="-20%"
+          y="-20%"
+          width="140%"
+          height="140%">
+    <feGaussianBlur stdDeviation="25"/>
+  </filter>
+
+  <filter id="cloudBlur"
+          x="-50%"
+          y="-50%"
+          width="200%"
+          height="200%">
+    <feGaussianBlur stdDeviation="8"/>
+  </filter>
+
+</defs>
+""")
+
+    # --------------------------------------------------------
+    # Background
+    # --------------------------------------------------------
+
+    parts.extend(background_elements())
+    parts.extend(planet_elements())
+    parts.extend(shooting_stars())
+
+    # --------------------------------------------------------
+    # Contribution grid
+    # --------------------------------------------------------
+
+    parts.extend(grid_elements(contributions))
+
+    # --------------------------------------------------------
+    # Cosmic clouds + mountains
+    # --------------------------------------------------------
+
+    parts.extend(cloud_elements())
+    parts.extend(mountain_elements())
 
     # --------------------------------------------------------
     # Bottom message
     # --------------------------------------------------------
 
-    svg.append(f"""
-    <text
-      x="{WIDTH / 2}"
-      y="500"
-      text-anchor="middle"
-      fill="{LIGHT_BLUE}"
-      font-family="Arial, Helvetica, sans-serif"
-      font-size="14"
-      letter-spacing="4"
-      opacity="0.82"
-    >
-      EVERY LITTLE CONTRIBUTION BECOMES A STAR
-    </text>
+    parts.append(
+        '<text x="700" y="495" '
+        'fill="#aab9ef" '
+        'font-size="14" '
+        'font-family="Arial, sans-serif" '
+        'letter-spacing="4" '
+        'text-anchor="middle" '
+        'opacity="0.82">'
+        'EVERY LITTLE CONTRIBUTION BECOMES A STAR'
+        '</text>'
+    )
 
-    <line
-      x1="590"
-      y1="518"
-      x2="810"
-      y2="518"
-      stroke="{LAVENDER}"
-      stroke-width="1"
-      opacity="0.30"
-    />
+    parts.append(
+        '<line x1="620" y1="512" '
+        'x2="780" y2="512" '
+        'stroke="#8297e8" '
+        'stroke-width="1" '
+        'opacity="0.35"/>'
+    )
 
-    <text
-      x="{WIDTH / 2}"
-      y="542"
-      text-anchor="middle"
-      fill="{LIGHT_BLUE}"
-      font-family="Arial, Helvetica, sans-serif"
-      font-size="10"
-      opacity="0.48"
-    >
-      {total_contributions} contributions in the last year
-    </text>
-    """)
+    # Small star below message
+    parts.append(
+        f'<polygon points="{star_points(700, 512, 5, 1.5, 4)}" '
+        'fill="#a8bcff" opacity="0.75"/>'
+    )
 
-    svg.append("</svg>")
+    # --------------------------------------------------------
+    # Total contribution count
+    # --------------------------------------------------------
 
-    return "\n".join(svg)
+    parts.append(
+        f'<text x="700" y="538" '
+        'fill="#7387b8" '
+        'font-size="11" '
+        'font-family="Arial, sans-serif" '
+        'text-anchor="middle" '
+        'opacity="0.85">'
+        f'{total} contributions in the last year'
+        '</text>'
+    )
+
+    parts.append("</svg>")
+
+    return "\n".join(parts)
 
 
 # ============================================================
-# WRITE FILE
+# MAIN
 # ============================================================
 
 def main():
-    os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
+    print("Fetching GitHub contribution data...")
 
-    print(f"Fetching GitHub contributions for {USERNAME}...")
+    contributions, total = get_contributions()
 
-    days, total = get_contributions()
+    print(
+        f"Found {len(contributions)} contribution days "
+        f"and {total} total contributions."
+    )
 
-    print(f"Received {len(days)} days.")
-    print(f"Total contributions: {total}")
+    svg = build_svg(contributions, total)
 
-    svg = create_svg(days, total)
+    os.makedirs(
+        os.path.dirname(OUTPUT_FILE),
+        exist_ok=True
+    )
 
-    with open(OUTPUT, "w", encoding="utf-8") as file:
+    with open(
+        OUTPUT_FILE,
+        "w",
+        encoding="utf-8"
+    ) as file:
         file.write(svg)
 
-    print(f"Generated: {OUTPUT}")
+    print(f"Generated: {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":
