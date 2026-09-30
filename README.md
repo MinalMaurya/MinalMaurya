@@ -9,15 +9,6 @@
   alt="Typing animation"
 />
 
-<br>
-
-<img
-  src="https://komarev.com/ghpvc/?username=MinalMaurya&label=Profile%20views&color=5B8DEF&style=flat"
-  alt="Profile views"
-/>
-
-</div>
-
 ---
 
 ## 🌷 A little about me
