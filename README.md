@@ -156,19 +156,6 @@ IIT Ropar
 
 ---
 
-## 🌌 My Little Coding Universe
-
-<div align="center">
-
-<img
-  src="https://raw.githubusercontent.com/MinalMaurya/MinalMaurya/output/assets/pixel-universe.svg"
-  alt="Minal's GitHub contribution universe"
-  width="100%"
-/>
-
-</div>
-
----
 
 ## 🌸 A Little Coding Mood
 
