@@ -68,7 +68,7 @@ A fuzzy-logic based project for analyzing academic stress and workload from acad
 
 ---
 
-### 🔄 CodeXaFlow
+### 🔄 CodehexaFlow
 
 **Workflow Detection & Diagram Generation**
 
