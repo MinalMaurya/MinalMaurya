@@ -4,7 +4,6 @@ import base64
 import math
 import urllib.request
 import urllib.error
-from datetime import date, timedelta
 
 
 # ============================================================
@@ -72,7 +71,6 @@ WHITE = "#ffffff"
 # ============================================================
 
 def escape_xml(value):
-    """Escape text so it is safe inside SVG/XML."""
     return (
         str(value)
         .replace("&", "&amp;")
@@ -84,16 +82,79 @@ def escape_xml(value):
 
 
 def load_background():
-    """Load the existing PNG and embed it directly into the SVG."""
+    """Load the existing cosmic PNG and embed it in the SVG."""
+
     if not os.path.exists(BACKGROUND_PATH):
         raise FileNotFoundError(
             f"Background image not found:\n{BACKGROUND_PATH}"
         )
 
     with open(BACKGROUND_PATH, "rb") as file:
-        encoded = base64.b64encode(file.read()).decode("ascii")
+        return base64.b64encode(
+            file.read()
+        ).decode("ascii")
 
-    return encoded
+
+# ============================================================
+# NORMALIZE GITHUB WEEK DATA
+# ============================================================
+
+def get_week_days(week):
+    """
+    GitHub GraphQL returns weeks like:
+
+    {
+        "contributionDays": [
+            {
+                "date": "2026-09-01",
+                "contributionCount": 3
+            }
+        ]
+    }
+
+    This function also supports a plain list of days.
+    """
+
+    if isinstance(week, list):
+        return week
+
+    if isinstance(week, dict):
+
+        days = week.get(
+            "contributionDays",
+            []
+        )
+
+        if isinstance(days, list):
+            return days
+
+    return []
+
+
+def normalize_weeks(weeks):
+    """
+    Convert GitHub's contribution-calendar response
+    into a simple list-of-lists structure.
+
+    Result:
+
+        [
+            [day, day, day, ...],
+            [day, day, day, ...],
+            ...
+        ]
+    """
+
+    normalized = []
+
+    for week in weeks:
+
+        days = get_week_days(week)
+
+        if days:
+            normalized.append(days)
+
+    return normalized
 
 
 # ============================================================
@@ -101,17 +162,11 @@ def load_background():
 # ============================================================
 
 def get_contributions():
-    """
-    Fetch the user's GitHub contribution calendar.
-
-    GitHub Actions automatically provides GH_TOKEN.
-    For local testing, set GH_TOKEN manually.
-    """
 
     if not GH_TOKEN:
         raise RuntimeError(
-            "GH_TOKEN is not set.\n"
-            "GitHub Actions provides this automatically.\n"
+            "GH_TOKEN is not set.\n\n"
+            "For GitHub Actions this is provided automatically.\n\n"
             "For local testing use:\n"
             'export GH_TOKEN="YOUR_TOKEN_HERE"'
         )
@@ -153,24 +208,37 @@ def get_contributions():
     )
 
     try:
+
         with urllib.request.urlopen(request) as response:
-            result = json.loads(response.read().decode("utf-8"))
+            result = json.loads(
+                response.read().decode("utf-8")
+            )
 
     except urllib.error.HTTPError as error:
-        body = error.read().decode("utf-8", errors="replace")
+
+        body = error.read().decode(
+            "utf-8",
+            errors="replace"
+        )
+
         raise RuntimeError(
             f"GitHub API error {error.code}:\n{body}"
         )
 
     except urllib.error.URLError as error:
+
         raise RuntimeError(
             f"Could not connect to GitHub:\n{error}"
         )
 
     if "errors" in result:
+
         raise RuntimeError(
             "GitHub GraphQL error:\n"
-            + json.dumps(result["errors"], indent=2)
+            + json.dumps(
+                result["errors"],
+                indent=2
+            )
         )
 
     calendar = (
@@ -182,8 +250,10 @@ def get_contributions():
     )
 
     if not calendar:
+
         raise RuntimeError(
-            f"Could not retrieve contribution calendar for {GH_USER}"
+            f"Could not retrieve contribution calendar "
+            f"for {GH_USER}"
         )
 
     return calendar
@@ -193,28 +263,30 @@ def get_contributions():
 # STAR GEOMETRY
 # ============================================================
 
-def star_points(cx, cy, outer_radius, inner_radius, points):
-    """
-    Generate a star polygon.
-
-    points = 4  -> small sparkle
-    points = 6  -> six-point star
-    points = 8  -> eight-point star
-    """
+def star_points(
+    cx,
+    cy,
+    outer_radius,
+    inner_radius,
+    points
+):
 
     coordinates = []
 
     total_points = points * 2
 
     for index in range(total_points):
-        angle = -math.pi / 2 + (
-            index * math.pi / points
+
+        angle = (
+            -math.pi / 2
+            + index * math.pi / points
         )
 
-        if index % 2 == 0:
-            radius = outer_radius
-        else:
-            radius = inner_radius
+        radius = (
+            outer_radius
+            if index % 2 == 0
+            else inner_radius
+        )
 
         x = cx + math.cos(angle) * radius
         y = cy + math.sin(angle) * radius
@@ -227,31 +299,13 @@ def star_points(cx, cy, outer_radius, inner_radius, points):
 
 
 # ============================================================
-# CONTRIBUTION STAR STYLE
+# STAR STYLE
 # ============================================================
 
 def get_star_style(count):
-    """
-    Convert contribution count into a visual star.
-
-    1       -> small blue sparkle
-    2–3     -> cyan diamond
-    4–6     -> six-point star
-    7–9     -> eight-point purple star
-    10+     -> large gold star
-    """
-
-    if count <= 0:
-        return {
-            "points": 4,
-            "outer": 3.2,
-            "inner": 1.1,
-            "color": DOT_COLOR,
-            "glow": 0.30,
-            "duration": 4.5
-        }
 
     if count == 1:
+
         return {
             "points": 4,
             "outer": 4.5,
@@ -262,6 +316,7 @@ def get_star_style(count):
         }
 
     if count <= 3:
+
         return {
             "points": 4,
             "outer": 5.5,
@@ -272,6 +327,7 @@ def get_star_style(count):
         }
 
     if count <= 6:
+
         return {
             "points": 6,
             "outer": 7.0,
@@ -282,6 +338,7 @@ def get_star_style(count):
         }
 
     if count <= 9:
+
         return {
             "points": 8,
             "outer": 8.5,
@@ -302,30 +359,31 @@ def get_star_style(count):
 
 
 # ============================================================
-# ANIMATION HELPERS
+# ANIMATION DELAY
 # ============================================================
 
-def animation_delay(index, multiplier=0.37):
-    """
-    Generate deterministic asynchronous animation delays.
-
-    No randomness is used, so every GitHub Action produces
-    stable SVG output.
-    """
+def animation_delay(
+    index,
+    multiplier=0.37
+):
 
     return f"{(index * multiplier) % 6:.2f}s"
 
 
 # ============================================================
-# EMPTY DAY
+# EMPTY CONTRIBUTION DAY
 # ============================================================
 
-def make_empty_day(cx, cy, index):
-    """
-    Empty contribution days become tiny softly twinkling stars/dots.
-    """
+def make_empty_day(
+    cx,
+    cy,
+    index
+):
 
-    delay = animation_delay(index, 0.41)
+    delay = animation_delay(
+        index,
+        0.41
+    )
 
     return f"""
     <circle
@@ -357,14 +415,13 @@ def make_empty_day(cx, cy, index):
 # CONTRIBUTION STAR
 # ============================================================
 
-def make_contribution_star(cx, cy, count, index, contribution_date):
-    """
-    Create a contribution star with:
-    - different shape based on contribution count
-    - glow
-    - gentle pulse
-    - accessible title
-    """
+def make_contribution_star(
+    cx,
+    cy,
+    count,
+    index,
+    contribution_date
+):
 
     style = get_star_style(count)
 
@@ -376,7 +433,10 @@ def make_contribution_star(cx, cy, count, index, contribution_date):
         style["points"]
     )
 
-    delay = animation_delay(index, 0.53)
+    delay = animation_delay(
+        index,
+        0.53
+    )
 
     title = escape_xml(
         f"{contribution_date} — {count} contributions"
@@ -411,7 +471,6 @@ def make_contribution_star(cx, cy, count, index, contribution_date):
 
         </circle>
 
-
         <polygon
             points="{points}"
             fill="{style["color"]}"
@@ -444,10 +503,12 @@ def make_contribution_star(cx, cy, count, index, contribution_date):
 # CONSTELLATION LINE
 # ============================================================
 
-def make_constellation_line(x1, y1, x2, y2):
-    """
-    Subtle line connecting nearby contribution stars.
-    """
+def make_constellation_line(
+    x1,
+    y1,
+    x2,
+    y2
+):
 
     return f"""
     <line
@@ -462,35 +523,58 @@ def make_constellation_line(x1, y1, x2, y2):
 
 
 # ============================================================
-# MONTH LABELS
+# MONTH POSITIONS
 # ============================================================
 
 def get_month_positions(weeks):
-    """
-    Find approximate x positions for Jan–Dec labels.
-    """
 
     positions = []
 
     previous_month = None
 
-    for week_index, week in enumerate(weeks):
-        if not week:
+    for week_index, days in enumerate(weeks):
+
+        if not days:
             continue
 
-        first_date = week[0].get("date", "")
+        first_day = days[0]
+
+        if not isinstance(
+            first_day,
+            dict
+        ):
+            continue
+
+        first_date = first_day.get(
+            "date",
+            ""
+        )
+
         if not first_date:
             continue
 
         try:
-            current_month = int(first_date[5:7])
-        except (ValueError, IndexError):
+
+            current_month = int(
+                first_date[5:7]
+            )
+
+        except (
+            ValueError,
+            IndexError
+        ):
+
             continue
 
         if current_month != previous_month:
+
             positions.append(
-                (week_index, current_month)
+                (
+                    week_index,
+                    current_month
+                )
             )
+
             previous_month = current_month
 
     return positions
@@ -501,9 +585,22 @@ def get_month_positions(weeks):
 # ============================================================
 
 def generate_svg(calendar):
+
     background = load_background()
 
-    weeks = calendar.get("weeks", [])
+    raw_weeks = calendar.get(
+        "weeks",
+        []
+    )
+
+    # IMPORTANT:
+    # Convert GitHub's dictionary-based week structure
+    # into simple lists before doing anything else.
+
+    weeks = normalize_weeks(
+        raw_weeks
+    )
+
     total_contributions = calendar.get(
         "totalContributions",
         0
@@ -559,13 +656,18 @@ viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
     )
 
     # --------------------------------------------------------
-    # VERY SUBTLE GRID BACKPLATE
+    # SUBTLE GRID BACKPLATE
     # --------------------------------------------------------
-    # This is intentionally transparent so the background
-    # remains visible.
 
-    grid_width = WEEKS * CELL_W + 20
-    grid_height = 7 * CELL_H + 20
+    grid_width = (
+        WEEKS * CELL_W
+        + 20
+    )
+
+    grid_height = (
+        7 * CELL_H
+        + 20
+    )
 
     svg_parts.append(
         f"""
@@ -591,7 +693,7 @@ viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
         ("Thu", 3),
         ("Fri", 4),
         ("Sat", 5),
-        ("Sun", 6),
+        ("Sun", 6)
     ]
 
     for label, row in weekdays:
@@ -633,10 +735,12 @@ viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
         "Sep",
         "Oct",
         "Nov",
-        "Dec",
+        "Dec"
     ]
 
-    month_positions = get_month_positions(weeks)
+    month_positions = get_month_positions(
+        weeks
+    )
 
     for week_index, month_number in month_positions:
 
@@ -665,21 +769,32 @@ viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
         )
 
     # --------------------------------------------------------
-    # COLLECT ACTIVE STARS
+    # CONTRIBUTION DAYS
     # --------------------------------------------------------
 
     active_stars = []
 
     contribution_index = 0
 
-    # GitHub normally returns 52/53 weeks.
-    # We render up to WEEKS columns.
-    for week_index, week in enumerate(weeks[:WEEKS]):
+    for week_index, days in enumerate(
+        weeks[:WEEKS]
+    ):
 
-        for day_index, day in enumerate(week):
+        for day_index, day in enumerate(
+            days[:7]
+        ):
+
+            if not isinstance(
+                day,
+                dict
+            ):
+                continue
 
             count = int(
-                day.get("contributionCount", 0)
+                day.get(
+                    "contributionCount",
+                    0
+                )
             )
 
             contribution_date = day.get(
@@ -732,25 +847,31 @@ viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
             contribution_index += 1
 
     # --------------------------------------------------------
-    # CONSTELLATION CONNECTIONS
+    # CONSTELLATION LINES
     # --------------------------------------------------------
-    # Only connect nearby actual contribution stars.
-    # No decorative orbital lines.
+    # ONLY connects nearby real contribution stars.
+    # No decorative orbiting/rotating objects.
 
-    for i, star_a in enumerate(active_stars):
+    for i, star_a in enumerate(
+        active_stars
+    ):
 
         x1, y1, count_a = star_a
 
-        for j in range(i + 1, len(active_stars)):
+        for j in range(
+            i + 1,
+            len(active_stars)
+        ):
 
-            x2, y2, count_b = active_stars[j]
+            x2, y2, count_b = (
+                active_stars[j]
+            )
 
             distance = math.sqrt(
                 (x2 - x1) ** 2
                 + (y2 - y1) ** 2
             )
 
-            # Only nearby stars.
             if distance <= 48:
 
                 svg_parts.append(
@@ -801,13 +922,13 @@ viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
 """
     )
 
-    # --------------------------------------------------------
-    # CLOSE SVG
-    # --------------------------------------------------------
+    svg_parts.append(
+        "</svg>"
+    )
 
-    svg_parts.append("</svg>")
-
-    return "\n".join(svg_parts)
+    return "\n".join(
+        svg_parts
+    )
 
 
 # ============================================================
@@ -816,17 +937,32 @@ viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
 
 def main():
 
-    print("Generating Pixel Universe...")
-    print(f"GitHub user: {GH_USER}")
-    print(f"Background: {BACKGROUND_PATH}")
-    print(f"Output: {OUTPUT_PATH}")
+    print(
+        "Generating Pixel Universe..."
+    )
+
+    print(
+        f"GitHub user: {GH_USER}"
+    )
+
+    print(
+        f"Background: {BACKGROUND_PATH}"
+    )
+
+    print(
+        f"Output: {OUTPUT_PATH}"
+    )
 
     calendar = get_contributions()
 
-    svg = generate_svg(calendar)
+    svg = generate_svg(
+        calendar
+    )
 
     os.makedirs(
-        os.path.dirname(OUTPUT_PATH),
+        os.path.dirname(
+            OUTPUT_PATH
+        ),
         exist_ok=True
     )
 
@@ -839,11 +975,18 @@ def main():
         file.write(svg)
 
     print()
-    print("Pixel Universe generated successfully.")
     print(
-        f"Total contributions: "
-        f"{calendar.get('totalContributions', 0)}"
+        "Pixel Universe generated successfully."
     )
+
+    print(
+        "Total contributions:",
+        calendar.get(
+            "totalContributions",
+            0
+        )
+    )
+
     print(
         f"SVG saved to: {OUTPUT_PATH}"
     )
