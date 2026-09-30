@@ -1,0 +1,626 @@
+<svg
+xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 1200 330"
+width="1200"
+height="330"
+role="img"
+aria-label="Soft pastel landscape with sky, trees, grass and flowers">
+
+<defs>
+
+  <!-- Soft sky -->
+
+  <linearGradient
+    id="sky"
+    x1="0"
+    y1="0"
+    x2="0"
+    y2="1">
+
+    <stop
+      offset="0%"
+      stop-color="#dfe9ff"/>
+
+    <stop
+      offset="55%"
+      stop-color="#f4e9f7"/>
+
+    <stop
+      offset="100%"
+      stop-color="#fff3e8"/>
+
+  </linearGradient>
+
+
+  <!-- Distant hill -->
+
+  <linearGradient
+    id="hill"
+    x1="0"
+    y1="0"
+    x2="0"
+    y2="1">
+
+    <stop
+      offset="0%"
+      stop-color="#c8d9c4"/>
+
+    <stop
+      offset="100%"
+      stop-color="#a9c2a3"/>
+
+  </linearGradient>
+
+
+  <!-- Foreground grass -->
+
+  <linearGradient
+    id="grass"
+    x1="0"
+    y1="0"
+    x2="0"
+    y2="1">
+
+    <stop
+      offset="0%"
+      stop-color="#9fbd91"/>
+
+    <stop
+      offset="100%"
+      stop-color="#789a70"/>
+
+  </linearGradient>
+
+
+  <!-- Sun -->
+
+  <radialGradient
+    id="sun">
+
+    <stop
+      offset="0%"
+      stop-color="#fff5cf"
+      stop-opacity=".95"/>
+
+    <stop
+      offset="100%"
+      stop-color="#fff5cf"
+      stop-opacity="0"/>
+
+  </radialGradient>
+
+
+  <filter id="soft">
+
+    <feGaussianBlur
+      stdDeviation="8"/>
+
+  </filter>
+
+
+  <style>
+
+    .float {
+
+      animation:
+        float
+        5s
+        ease-in-out
+        infinite;
+
+    }
+
+    .sway {
+
+      transform-box:
+        fill-box;
+
+      transform-origin:
+        bottom center;
+
+      animation:
+        sway
+        4s
+        ease-in-out
+        infinite;
+
+    }
+
+    @keyframes float {
+
+      0%,100% {
+        transform:
+          translateY(0);
+      }
+
+      50% {
+        transform:
+          translateY(-5px);
+      }
+
+    }
+
+    @keyframes sway {
+
+      0%,100% {
+        transform:
+          rotate(-2deg);
+      }
+
+      50% {
+        transform:
+          rotate(2deg);
+      }
+
+    }
+
+  </style>
+
+</defs>
+
+
+<!-- ========================= -->
+<!-- SKY -->
+<!-- ========================= -->
+
+<rect
+  width="1200"
+  height="330"
+  fill="url(#sky)"/>
+
+
+<!-- Soft sun -->
+
+<circle
+  cx="920"
+  cy="75"
+  r="100"
+  fill="url(#sun)"
+  filter="url(#soft)"/>
+
+<circle
+  cx="920"
+  cy="75"
+  r="35"
+  fill="#fff1c7"
+  opacity=".75"/>
+
+
+<!-- ========================= -->
+<!-- CLOUDS -->
+<!-- ========================= -->
+
+<g
+  class="float"
+  fill="#ffffff"
+  opacity=".72">
+
+  <circle
+    cx="170"
+    cy="75"
+    r="25"/>
+
+  <circle
+    cx="200"
+    cy="68"
+    r="34"/>
+
+  <circle
+    cx="235"
+    cy="78"
+    r="24"/>
+
+  <rect
+    x="165"
+    y="75"
+    width="75"
+    height="25"
+    rx="13"/>
+
+</g>
+
+
+<g
+  class="float"
+  style="animation-delay:1.4s"
+  fill="#ffffff"
+  opacity=".58">
+
+  <circle
+    cx="700"
+    cy="52"
+    r="20"/>
+
+  <circle
+    cx="730"
+    cy="46"
+    r="28"/>
+
+  <circle
+    cx="760"
+    cy="57"
+    r="21"/>
+
+  <rect
+    x="695"
+    y="55"
+    width="70"
+    height="22"
+    rx="12"/>
+
+</g>
+
+
+<!-- Tiny sky sparkles -->
+
+<g fill="#ffffff" opacity=".75">
+
+  <circle
+    cx="390"
+    cy="45"
+    r="2"/>
+
+  <circle
+    cx="510"
+    cy="90"
+    r="2"/>
+
+  <circle
+    cx="1040"
+    cy="125"
+    r="2"/>
+
+  <circle
+    cx="1100"
+    cy="55"
+    r="1.8"/>
+
+</g>
+
+
+<!-- ========================= -->
+<!-- DISTANT HILLS -->
+<!-- ========================= -->
+
+<path
+  d="
+    M0 205
+    C120 155 190 165 300 205
+    C420 145 520 150 630 205
+    C760 135 860 150 980 200
+    C1070 160 1130 175 1200 195
+    L1200 330
+    L0 330
+    Z"
+  fill="url(#hill)"
+  opacity=".72"/>
+
+
+<!-- ========================= -->
+<!-- BACKGROUND TREES -->
+<!-- ========================= -->
+
+<g class="sway">
+
+  <rect
+    x="265"
+    y="175"
+    width="9"
+    height="58"
+    rx="4"
+    fill="#735b4a"/>
+
+  <circle
+    cx="270"
+    cy="160"
+    r="32"
+    fill="#91ad87"/>
+
+  <circle
+    cx="250"
+    cy="175"
+    r="23"
+    fill="#9fba94"/>
+
+  <circle
+    cx="292"
+    cy="177"
+    r="23"
+    fill="#87a77f"/>
+
+</g>
+
+
+<g class="sway">
+
+  <rect
+    x="835"
+    y="160"
+    width="9"
+    height="70"
+    rx="4"
+    fill="#735b4a"/>
+
+  <circle
+    cx="840"
+    cy="145"
+    r="35"
+    fill="#8faa85"/>
+
+  <circle
+    cx="818"
+    cy="162"
+    r="24"
+    fill="#9db993"/>
+
+  <circle
+    cx="865"
+    cy="164"
+    r="25"
+    fill="#82a37b"/>
+
+</g>
+
+
+<!-- ========================= -->
+<!-- FOREGROUND LAND -->
+<!-- ========================= -->
+
+<path
+  d="
+    M0 225
+    C150 205 250 245 380 220
+    C510 195 590 245 720 220
+    C850 195 970 235 1200 205
+    L1200 330
+    L0 330
+    Z"
+  fill="url(#grass)"/>
+
+
+<!-- Soft wave at bottom -->
+
+<path
+  d="
+    M0 285
+    C150 265 250 305 400 280
+    C560 255 680 310 830 280
+    C970 255 1080 295 1200 270
+    L1200 330
+    L0 330
+    Z"
+  fill="#6f9168"
+  opacity=".35"/>
+
+
+<!-- ========================= -->
+<!-- SMALL TREE -->
+<!-- ========================= -->
+
+<g
+  class="sway"
+  transform="translate(105 0)">
+
+  <rect
+    x="55"
+    y="175"
+    width="10"
+    height="90"
+    rx="5"
+    fill="#735344"/>
+
+  <circle
+    cx="60"
+    cy="155"
+    r="42"
+    fill="#789b72"/>
+
+  <circle
+    cx="35"
+    cy="175"
+    r="29"
+    fill="#89a980"/>
+
+  <circle
+    cx="87"
+    cy="178"
+    r="28"
+    fill="#6f9369"/>
+
+  <circle
+    cx="61"
+    cy="130"
+    r="27"
+    fill="#86a77d"/>
+
+</g>
+
+
+<!-- ========================= -->
+<!-- GRASS BLADES -->
+<!-- ========================= -->
+
+<g
+  stroke="#52794e"
+  stroke-width="3"
+  stroke-linecap="round"
+  fill="none">
+
+  <path d="M320 295 Q315 280 307 273"/>
+  <path d="M326 296 Q329 279 337 271"/>
+
+  <path d="M465 305 Q460 288 451 282"/>
+  <path d="M471 305 Q475 286 484 279"/>
+
+  <path d="M735 294 Q730 279 722 272"/>
+  <path d="M742 294 Q746 278 754 271"/>
+
+  <path d="M1020 302 Q1015 285 1006 279"/>
+  <path d="M1027 302 Q1031 284 1040 277"/>
+
+</g>
+
+
+<!-- ========================= -->
+<!-- FLOWERS -->
+<!-- ========================= -->
+
+<!-- Flower 1 -->
+
+<g transform="translate(380 270)">
+
+  <path
+    d="M0 8 Q0 25 -2 35"
+    stroke="#52794e"
+    stroke-width="3"
+    fill="none"/>
+
+  <circle
+    cx="0"
+    cy="5"
+    r="6"
+    fill="#f5a9bd"/>
+
+  <circle
+    cx="-6"
+    cy="3"
+    r="5"
+    fill="#f6bfd0"/>
+
+  <circle
+    cx="6"
+    cy="3"
+    r="5"
+    fill="#f6bfd0"/>
+
+  <circle
+    cx="0"
+    cy="-3"
+    r="5"
+    fill="#f6bfd0"/>
+
+  <circle
+    cx="0"
+    cy="3"
+    r="3"
+    fill="#f7d98b"/>
+
+</g>
+
+
+<!-- Flower 2 -->
+
+<g transform="translate(560 288)">
+
+  <path
+    d="M0 8 Q-1 23 -3 30"
+    stroke="#52794e"
+    stroke-width="3"
+    fill="none"/>
+
+  <circle
+    cx="0"
+    cy="5"
+    r="6"
+    fill="#c6b4ed"/>
+
+  <circle
+    cx="-6"
+    cy="4"
+    r="5"
+    fill="#d7c8f3"/>
+
+  <circle
+    cx="6"
+    cy="4"
+    r="5"
+    fill="#d7c8f3"/>
+
+  <circle
+    cx="0"
+    cy="-3"
+    r="5"
+    fill="#d7c8f3"/>
+
+  <circle
+    cx="0"
+    cy="3"
+    r="3"
+    fill="#f5d98a"/>
+
+</g>
+
+
+<!-- Flower 3 -->
+
+<g transform="translate(905 270)">
+
+  <path
+    d="M0 8 Q0 25 2 35"
+    stroke="#52794e"
+    stroke-width="3"
+    fill="none"/>
+
+  <circle
+    cx="0"
+    cy="5"
+    r="6"
+    fill="#f3c17c"/>
+
+  <circle
+    cx="-6"
+    cy="4"
+    r="5"
+    fill="#f8d39b"/>
+
+  <circle
+    cx="6"
+    cy="4"
+    r="5"
+    fill="#f8d39b"/>
+
+  <circle
+    cx="0"
+    cy="-3"
+    r="5"
+    fill="#f8d39b"/>
+
+  <circle
+    cx="0"
+    cy="3"
+    r="3"
+    fill="#e89aa8"/>
+
+</g>
+
+
+<!-- ========================= -->
+<!-- LITTLE FIRELIES -->
+<!-- ========================= -->
+
+<g fill="#fff2b8">
+
+  <circle
+    cx="430"
+    cy="235"
+    r="2"/>
+
+  <circle
+    cx="650"
+    cy="250"
+    r="2"/>
+
+  <circle
+    cx="785"
+    cy="215"
+    r="2"/>
+
+  <circle
+    cx="1080"
+    cy="250"
+    r="2"/>
+
+</g>
+
+
+</svg>
