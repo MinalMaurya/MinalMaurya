@@ -1,0 +1,5177 @@
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="1200"
+height="430"
+viewBox="0 0 1200 430"
+role="img"
+aria-label="Minal Maurya's GitHub contribution universe">
+
+<defs>
+
+    <radialGradient id="background">
+
+        <stop
+            offset="0%"
+            stop-color="#17132f"/>
+
+        <stop
+            offset="55%"
+            stop-color="#0b0a1d"/>
+
+        <stop
+            offset="100%"
+            stop-color="#05050f"/>
+
+    </radialGradient>
+
+
+    <radialGradient id="nebula">
+
+        <stop
+            offset="0%"
+            stop-color="#d9c8ff"
+            stop-opacity=".18"/>
+
+        <stop
+            offset="45%"
+            stop-color="#b7a1ff"
+            stop-opacity=".08"/>
+
+        <stop
+            offset="100%"
+            stop-color="#8e7bff"
+            stop-opacity="0"/>
+
+    </radialGradient>
+
+
+    <filter id="glow">
+
+        <feGaussianBlur
+            stdDeviation="2.5"
+            result="blur"/>
+
+        <feMerge>
+
+            <feMergeNode in="blur"/>
+
+            <feMergeNode in="SourceGraphic"/>
+
+        </feMerge>
+
+    </filter>
+
+
+    <filter id="softGlow">
+
+        <feGaussianBlur
+            stdDeviation="10"/>
+
+    </filter>
+
+
+    <style>
+
+        .twinkle {
+
+            transform-box: fill-box;
+
+            transform-origin: center;
+
+            animation:
+                twinkle
+                3.8s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        @keyframes twinkle {
+
+            0%, 100% {
+
+                opacity: .55;
+
+                transform:
+                    scale(.85);
+
+            }
+
+            50% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1.18);
+
+            }
+
+        }
+
+
+        .caption {
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            letter-spacing:
+                1.5px;
+
+        }
+
+    </style>
+
+</defs>
+
+
+<!-- Background -->
+
+<rect
+    width="100%"
+    height="100%"
+    rx="28"
+    fill="url(#background)"/>
+
+
+<!-- Soft galaxy haze -->
+
+<ellipse
+    cx="600"
+    cy="220"
+    rx="410"
+    ry="125"
+    fill="url(#nebula)"
+    filter="url(#softGlow)"/>
+
+
+<ellipse
+    cx="600"
+    cy="220"
+    rx="300"
+    ry="72"
+    fill="none"
+    stroke="#b9a5ff"
+    stroke-opacity=".08"
+    stroke-width="22"
+    transform="rotate(-10 600 220)"/>
+
+
+
+        <circle
+            class="twinkle"
+            cx="113"
+            cy="277"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.12s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1014"
+            cy="384"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.87s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="308"
+            cy="64"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.85s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1053"
+            cy="139"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.99s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="89"
+            cy="195"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.90s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="562"
+            cy="371"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.56s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="518"
+            cy="162"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.07s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1110"
+            cy="182"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.77s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="814"
+            cy="130"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.00s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="977"
+            cy="157"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.01s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="986"
+            cy="188"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.02s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="76"
+            cy="362"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.95s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="692"
+            cy="229"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.13s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="528"
+            cy="174"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.37s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="546"
+            cy="322"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.74s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="779"
+            cy="182"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.55s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="780"
+            cy="85"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.60s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1125"
+            cy="278"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.81s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="762"
+            cy="221"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.30s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="106"
+            cy="306"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.68s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="469"
+            cy="155"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.21s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="991"
+            cy="37"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.79s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="212"
+            cy="156"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.67s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="195"
+            cy="260"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.16s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="29"
+            cy="339"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.21s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="942"
+            cy="117"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.21s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="912"
+            cy="381"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.38s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="834"
+            cy="380"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.20s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="656"
+            cy="167"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.04s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="174"
+            cy="176"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.84s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="474"
+            cy="291"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.59s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="238"
+            cy="382"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.25s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="541"
+            cy="363"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.19s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1134"
+            cy="91"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.77s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="246"
+            cy="40"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.44s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="983"
+            cy="310"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.65s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="523"
+            cy="355"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.10s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="293"
+            cy="236"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.08s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="564"
+            cy="222"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.02s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="656"
+            cy="214"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.14s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="678"
+            cy="125"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.17s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="752"
+            cy="105"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.47s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="78"
+            cy="78"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.83s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="754"
+            cy="357"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.37s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="823"
+            cy="194"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.01s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1121"
+            cy="278"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.53s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1114"
+            cy="92"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.20s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="702"
+            cy="79"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.65s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="907"
+            cy="323"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.16s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1012"
+            cy="288"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.49s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="703"
+            cy="195"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.39s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="157"
+            cy="318"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.49s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1038"
+            cy="46"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.48s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="571"
+            cy="56"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.07s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="245"
+            cy="189"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.50s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1084"
+            cy="308"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.49s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="644"
+            cy="216"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.35s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="814"
+            cy="334"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.31s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="57"
+            cy="268"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.33s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="658"
+            cy="69"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.79s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1143"
+            cy="383"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.79s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="390"
+            cy="313"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.42s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="879"
+            cy="148"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.19s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="440"
+            cy="70"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.43s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="219"
+            cy="105"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.65s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="370"
+            cy="177"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.83s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="376"
+            cy="282"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.14s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1115"
+            cy="101"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.77s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1129"
+            cy="234"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.04s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="344"
+            cy="265"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.82s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="829"
+            cy="313"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.38s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="551"
+            cy="78"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.62s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="470"
+            cy="337"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.48s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="446"
+            cy="242"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.81s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="802"
+            cy="112"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.65s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="196"
+            cy="362"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.69s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="120"
+            cy="131"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.92s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="181"
+            cy="221"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.06s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="773"
+            cy="77"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.44s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="226"
+            cy="137"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.82s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="755"
+            cy="157"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.56s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1167"
+            cy="208"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.25s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="1096"
+            cy="268"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.23s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="696"
+            cy="160"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.35s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="207"
+            cy="230"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.10s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="444"
+            cy="184"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:1.49s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="940"
+            cy="216"
+            r="1"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.38s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="363"
+            cy="153"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:3.16s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="405"
+            cy="54"
+            r="1.5"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:2.78s"/>
+        
+
+        <circle
+            class="twinkle"
+            cx="712"
+            cy="238"
+            r="2"
+            fill="#eee8ff"
+            opacity=".65"
+            style="animation-delay:0.11s"/>
+        
+
+                <circle
+                    cx="137.0"
+                    cy="148.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="139.1"
+                    cy="173.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="141.3"
+                    cy="197.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="143.5"
+                    cy="222.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="145.7"
+                    cy="247.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="147.9"
+                    cy="272.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="150.0"
+                    cy="297.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="154.4"
+                    cy="146.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="156.6"
+                    cy="171.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="158.8"
+                    cy="196.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="160.9"
+                    cy="221.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="163.1"
+                    cy="246.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="165.3"
+                    cy="271.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="167.5"
+                    cy="296.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="171.9"
+                    cy="145.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="174.0"
+                    cy="170.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="176.2"
+                    cy="195.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="178.4"
+                    cy="220.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="180.6"
+                    cy="245.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="182.8"
+                    cy="269.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="184.9"
+                    cy="294.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="189.3"
+                    cy="144.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="191.5"
+                    cy="169.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="193.7"
+                    cy="194.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="195.9"
+                    cy="219.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="198.1"
+                    cy="244.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="200.2"
+                    cy="268.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="202.4"
+                    cy="293.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="206.8"
+                    cy="143.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="209.0"
+                    cy="168.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="211.2"
+                    cy="193.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="213.4"
+                    cy="218.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="215.6"
+                    cy="243.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="217.7"
+                cy="268.0"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:1.21s">
+
+                <title>
+                    2025-10-31
+                    —
+                    4
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="219.9"
+                    cy="292.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="224.3"
+                    cy="142.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="226.5"
+                cy="167.7"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:0.62s">
+
+                <title>
+                    2025-11-03
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="228.7"
+                    cy="192.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="230.9"
+                    cy="217.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="233.1"
+                    cy="242.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="235.2"
+                    cy="267.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="237.4"
+                    cy="292.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="241.9"
+                    cy="142.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="244.0"
+                    cy="167.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="246.2"
+                    cy="192.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="248.4"
+                    cy="217.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="250.6"
+                    cy="241.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="252.8"
+                    cy="266.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="254.9"
+                    cy="291.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="259.4"
+                    cy="142.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="261.6"
+                    cy="166.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="263.8"
+                    cy="191.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="265.9"
+                    cy="216.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="268.1"
+                    cy="241.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="270.3"
+                    cy="266.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="272.5"
+                    cy="291.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="277.0"
+                    cy="141.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="279.1"
+                    cy="166.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="281.3"
+                    cy="191.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="283.5"
+                    cy="216.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="285.7"
+                    cy="241.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="287.9"
+                    cy="266.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="290.0"
+                    cy="291.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="294.5"
+                    cy="141.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="296.7"
+                    cy="166.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="298.9"
+                    cy="191.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="301.1"
+                    cy="216.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="303.2"
+                    cy="241.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="305.4"
+                    cy="266.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="307.6"
+                    cy="291.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="312.1"
+                    cy="142.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="314.3"
+                    cy="166.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="316.5"
+                    cy="191.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="318.6"
+                    cy="216.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="320.8"
+                    cy="241.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="323.0"
+                    cy="266.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="325.2"
+                    cy="291.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="329.7"
+                    cy="142.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="331.9"
+                    cy="167.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="334.1"
+                    cy="192.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="336.2"
+                    cy="217.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="338.4"
+                    cy="241.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="340.6"
+                cy="266.9"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:1.84s">
+
+                <title>
+                    2025-12-19
+                    —
+                    3
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="342.8"
+                cy="291.8"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:2.01s">
+
+                <title>
+                    2025-12-20
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="347.3"
+                    cy="142.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="349.5"
+                    cy="167.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="351.7"
+                    cy="192.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="353.8"
+                    cy="217.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="356.0"
+                    cy="242.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="358.2"
+                    cy="267.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="360.4"
+                    cy="292.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="364.9"
+                    cy="143.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="367.1"
+                    cy="168.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="369.3"
+                    cy="193.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="371.5"
+                    cy="218.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="373.6"
+                    cy="243.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="375.8"
+                    cy="268.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="378.0"
+                    cy="292.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="382.6"
+                    cy="144.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="384.7"
+                    cy="169.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="386.9"
+                    cy="194.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="389.1"
+                    cy="218.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="391.3"
+                    cy="243.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="393.5"
+                    cy="268.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="395.6"
+                    cy="293.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="400.2"
+                    cy="145.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="402.4"
+                    cy="170.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="404.6"
+                    cy="194.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="406.7"
+                    cy="219.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="408.9"
+                cy="244.7"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:2.03s">
+
+                <title>
+                    2026-01-15
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="411.1"
+                cy="269.6"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:2.20s">
+
+                <title>
+                    2026-01-16
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="413.3"
+                    cy="294.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="417.9"
+                    cy="146.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="420.0"
+                    cy="171.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="422.2"
+                    cy="195.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="424.4"
+                    cy="220.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="426.6"
+                    cy="245.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="428.8"
+                    cy="270.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="430.9"
+                    cy="295.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="435.5"
+                    cy="147.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="437.7"
+                    cy="172.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="439.9"
+                    cy="197.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="442.1"
+                    cy="221.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="444.2"
+                    cy="246.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="446.4"
+                    cy="271.7"
+                    r="12.2"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="446.4"
+                cy="271.7"
+                r="4.5"
+                fill="#eee7ff"
+                opacity="0.86"
+                filter="url(#glow)"
+                style="animation-delay:2.38s">
+
+                <title>
+                    2026-01-30
+                    —
+                    5
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="448.6"
+                    cy="296.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="453.2"
+                    cy="148.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="455.4"
+                    cy="173.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="457.6"
+                    cy="198.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="459.7"
+                    cy="223.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="461.9"
+                    cy="248.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="464.1"
+                cy="272.9"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:2.47s">
+
+                <title>
+                    2026-02-06
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="466.3"
+                cy="297.8"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:2.64s">
+
+                <title>
+                    2026-02-07
+                    —
+                    3
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="470.9"
+                    cy="149.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="473.1"
+                    cy="174.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="475.2"
+                    cy="199.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="477.4"
+                    cy="224.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="479.6"
+                    cy="249.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="481.8"
+                    cy="274.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="484.0"
+                    cy="299.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="488.6"
+                    cy="151.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="490.7"
+                    cy="175.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="492.9"
+                    cy="200.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="495.1"
+                    cy="225.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="497.3"
+                    cy="250.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="499.5"
+                    cy="275.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="501.6"
+                    cy="300.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="506.3"
+                    cy="152.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="508.4"
+                    cy="177.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="510.6"
+                    cy="202.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="512.8"
+                    cy="227.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="515.0"
+                    cy="252.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="517.1"
+                    cy="277.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="519.3"
+                    cy="301.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="524.0"
+                    cy="153.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="526.1"
+                    cy="178.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="528.3"
+                    cy="203.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="530.5"
+                    cy="228.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="532.7"
+                    cy="253.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="534.8"
+                    cy="278.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="537.0"
+                    cy="303.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="541.7"
+                    cy="155.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="543.8"
+                    cy="180.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="546.0"
+                    cy="205.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="548.2"
+                    cy="230.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="550.4"
+                    cy="255.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="552.5"
+                    cy="280.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="554.7"
+                    cy="304.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="559.4"
+                    cy="157.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="561.5"
+                    cy="181.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="563.7"
+                    cy="206.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="565.9"
+                    cy="231.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="568.1"
+                    cy="256.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="570.3"
+                    cy="281.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="572.4"
+                    cy="306.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="577.1"
+                    cy="158.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="579.2"
+                    cy="183.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="581.4"
+                    cy="208.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="583.6"
+                    cy="233.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="585.8"
+                    cy="258.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="588.0"
+                    cy="283.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="590.1"
+                    cy="308.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="594.8"
+                    cy="160.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="596.9"
+                    cy="185.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="599.1"
+                    cy="210.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="601.3"
+                    cy="234.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="603.5"
+                    cy="259.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="605.7"
+                    cy="284.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="607.8"
+                    cy="309.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="612.5"
+                    cy="161.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="614.7"
+                    cy="186.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="616.8"
+                    cy="211.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="619.0"
+                    cy="236.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="621.2"
+                    cy="261.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="623.4"
+                    cy="286.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="625.6"
+                    cy="311.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="630.2"
+                    cy="163.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="632.4"
+                    cy="188.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="634.5"
+                    cy="213.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="636.7"
+                    cy="238.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="638.9"
+                    cy="263.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="641.1"
+                    cy="287.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="643.3"
+                    cy="312.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="647.9"
+                    cy="165.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="650.1"
+                    cy="189.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="652.2"
+                    cy="214.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="654.4"
+                    cy="239.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="656.6"
+                    cy="264.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="658.8"
+                    cy="289.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="661.0"
+                    cy="314.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="665.6"
+                    cy="166.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="667.8"
+                    cy="191.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="669.9"
+                    cy="216.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="672.1"
+                    cy="241.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="674.3"
+                    cy="266.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="676.5"
+                    cy="291.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="678.7"
+                    cy="316.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="683.3"
+                    cy="168.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="685.5"
+                    cy="192.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="687.6"
+                    cy="217.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="689.8"
+                    cy="242.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="692.0"
+                    cy="267.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="694.2"
+                    cy="292.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="696.4"
+                    cy="317.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="701.0"
+                    cy="169.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="703.2"
+                cy="194.4"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.05s">
+
+                <title>
+                    2026-05-11
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="705.3"
+                cy="219.3"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.22s">
+
+                <title>
+                    2026-05-12
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="707.5"
+                    cy="244.2"
+                    r="15.7"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="707.5"
+                cy="244.2"
+                r="5.8"
+                fill="#eee7ff"
+                opacity="1.0"
+                filter="url(#glow)"
+                style="animation-delay:3.39s">
+
+                <title>
+                    2026-05-13
+                    —
+                    10
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="709.7"
+                cy="269.1"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:3.56s">
+
+                <title>
+                    2026-05-14
+                    —
+                    4
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="711.9"
+                cy="294.0"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:3.73s">
+
+                <title>
+                    2026-05-15
+                    —
+                    3
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="714.1"
+                cy="318.9"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.90s">
+
+                <title>
+                    2026-05-16
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="718.7"
+                cy="170.8"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:2.97s">
+
+                <title>
+                    2026-05-17
+                    —
+                    4
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="720.8"
+                cy="195.7"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.14s">
+
+                <title>
+                    2026-05-18
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="723.0"
+                cy="220.6"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.31s">
+
+                <title>
+                    2026-05-19
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="725.2"
+                cy="245.5"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.48s">
+
+                <title>
+                    2026-05-20
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="727.4"
+                    cy="270.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="729.6"
+                    cy="295.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="731.7"
+                cy="320.2"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.99s">
+
+                <title>
+                    2026-05-23
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="736.3"
+                cy="172.1"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.06s">
+
+                <title>
+                    2026-05-24
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="738.5"
+                cy="197.0"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.23s">
+
+                <title>
+                    2026-05-25
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="740.7"
+                    cy="221.9"
+                    r="12.2"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="740.7"
+                cy="221.9"
+                r="4.5"
+                fill="#eee7ff"
+                opacity="0.86"
+                filter="url(#glow)"
+                style="animation-delay:3.40s">
+
+                <title>
+                    2026-05-26
+                    —
+                    5
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="742.9"
+                cy="246.8"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.57s">
+
+                <title>
+                    2026-05-27
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="745.1"
+                cy="271.7"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:3.74s">
+
+                <title>
+                    2026-05-28
+                    —
+                    3
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="747.2"
+                cy="296.6"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.91s">
+
+                <title>
+                    2026-05-29
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="749.4"
+                cy="321.5"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.08s">
+
+                <title>
+                    2026-05-30
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="754.0"
+                cy="173.3"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:3.15s">
+
+                <title>
+                    2026-05-31
+                    —
+                    3
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="756.2"
+                    cy="198.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="758.4"
+                cy="223.1"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:3.49s">
+
+                <title>
+                    2026-06-02
+                    —
+                    4
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="760.6"
+                cy="248.0"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.66s">
+
+                <title>
+                    2026-06-03
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="762.7"
+                cy="272.9"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:3.83s">
+
+                <title>
+                    2026-06-04
+                    —
+                    3
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="764.9"
+                cy="297.8"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.00s">
+
+                <title>
+                    2026-06-05
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="767.1"
+                cy="322.7"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:4.17s">
+
+                <title>
+                    2026-06-06
+                    —
+                    4
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="771.7"
+                cy="174.4"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:3.24s">
+
+                <title>
+                    2026-06-07
+                    —
+                    3
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="773.9"
+                cy="199.3"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.41s">
+
+                <title>
+                    2026-06-08
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="776.0"
+                cy="224.2"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.58s">
+
+                <title>
+                    2026-06-09
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="778.2"
+                cy="249.1"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.75s">
+
+                <title>
+                    2026-06-10
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="780.4"
+                cy="274.0"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:3.92s">
+
+                <title>
+                    2026-06-11
+                    —
+                    3
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="782.6"
+                cy="298.9"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.09s">
+
+                <title>
+                    2026-06-12
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="784.8"
+                cy="323.8"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.26s">
+
+                <title>
+                    2026-06-13
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="789.3"
+                cy="175.4"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.33s">
+
+                <title>
+                    2026-06-14
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="791.5"
+                cy="200.3"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:3.50s">
+
+                <title>
+                    2026-06-15
+                    —
+                    4
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="793.7"
+                    cy="225.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="795.9"
+                cy="250.1"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.84s">
+
+                <title>
+                    2026-06-17
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="798.0"
+                    cy="275.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="800.2"
+                    cy="299.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="802.4"
+                    cy="324.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="807.0"
+                cy="176.3"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.42s">
+
+                <title>
+                    2026-06-21
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="809.2"
+                    cy="201.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="811.3"
+                cy="226.1"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.76s">
+
+                <title>
+                    2026-06-23
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="813.5"
+                cy="251.0"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.93s">
+
+                <title>
+                    2026-06-24
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="815.7"
+                cy="275.9"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.10s">
+
+                <title>
+                    2026-06-25
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="817.9"
+                cy="300.8"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.27s">
+
+                <title>
+                    2026-06-26
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="820.1"
+                cy="325.7"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.44s">
+
+                <title>
+                    2026-06-27
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="824.6"
+                    cy="177.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="826.8"
+                    cy="201.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="829.0"
+                cy="226.8"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.85s">
+
+                <title>
+                    2026-06-30
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="831.1"
+                cy="251.7"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:4.02s">
+
+                <title>
+                    2026-07-01
+                    —
+                    3
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="833.3"
+                cy="276.6"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.19s">
+
+                <title>
+                    2026-07-02
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="835.5"
+                cy="301.6"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.36s">
+
+                <title>
+                    2026-07-03
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="837.7"
+                cy="326.5"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:4.53s">
+
+                <title>
+                    2026-07-04
+                    —
+                    3
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="842.2"
+                cy="177.6"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.60s">
+
+                <title>
+                    2026-07-05
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="844.4"
+                cy="202.6"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:3.77s">
+
+                <title>
+                    2026-07-06
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="846.6"
+                    cy="227.5"
+                    r="12.2"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="846.6"
+                cy="227.5"
+                r="4.5"
+                fill="#eee7ff"
+                opacity="0.86"
+                filter="url(#glow)"
+                style="animation-delay:3.94s">
+
+                <title>
+                    2026-07-07
+                    —
+                    6
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="848.8"
+                cy="252.4"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.11s">
+
+                <title>
+                    2026-07-08
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="850.9"
+                    cy="277.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="853.1"
+                cy="302.2"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.45s">
+
+                <title>
+                    2026-07-10
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="855.3"
+                    cy="327.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="859.8"
+                    cy="178.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="862.0"
+                    cy="203.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="864.2"
+                    cy="227.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="866.4"
+                    cy="252.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="868.6"
+                    cy="277.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="870.7"
+                    cy="302.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="872.9"
+                    cy="327.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="877.4"
+                    cy="178.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="879.6"
+                    cy="203.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="881.8"
+                    cy="228.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="884.0"
+                    cy="253.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="886.2"
+                    cy="278.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="888.3"
+                    cy="303.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="890.5"
+                    cy="327.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="895.0"
+                    cy="178.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="897.2"
+                    cy="203.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="899.4"
+                    cy="228.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="901.6"
+                    cy="253.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="903.7"
+                    cy="278.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="905.9"
+                    cy="303.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="908.1"
+                    cy="328.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="912.6"
+                    cy="178.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="914.8"
+                    cy="203.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="916.9"
+                    cy="228.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="919.1"
+                    cy="253.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="921.3"
+                    cy="278.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="923.5"
+                    cy="303.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="925.7"
+                    cy="328.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="930.1"
+                    cy="178.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="932.3"
+                    cy="203.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="934.5"
+                    cy="228.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="936.7"
+                    cy="253.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="938.9"
+                    cy="278.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="941.0"
+                    cy="303.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="943.2"
+                    cy="327.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="947.7"
+                    cy="178.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="949.9"
+                    cy="203.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="952.0"
+                    cy="228.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="954.2"
+                    cy="252.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="956.4"
+                    cy="277.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="958.6"
+                    cy="302.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="960.7"
+                    cy="327.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="965.2"
+                cy="177.7"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.23s">
+
+                <title>
+                    2026-08-23
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="967.4"
+                    cy="202.6"
+                    r="15.7"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="967.4"
+                cy="202.6"
+                r="5.8"
+                fill="#eee7ff"
+                opacity="1.0"
+                filter="url(#glow)"
+                style="animation-delay:4.40s">
+
+                <title>
+                    2026-08-24
+                    —
+                    8
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="969.6"
+                    cy="227.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="971.7"
+                    cy="252.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="973.9"
+                    cy="277.3"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="976.1"
+                    cy="302.2"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="978.3"
+                    cy="327.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="982.7"
+                    cy="177.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="984.9"
+                    cy="201.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="987.1"
+                    cy="226.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="989.2"
+                    cy="251.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="991.4"
+                    cy="276.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="993.6"
+                    cy="301.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="995.8"
+                    cy="326.4"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="1000.2"
+                    cy="176.1"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="1002.4"
+                    cy="201.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="1004.6"
+                    cy="225.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="1006.7"
+                cy="250.8"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:0.12s">
+
+                <title>
+                    2026-09-09
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="1008.9"
+                cy="275.7"
+                r="3.4"
+                fill="#eee7ff"
+                opacity="0.72"
+                filter="url(#glow)"
+                style="animation-delay:0.29s">
+
+                <title>
+                    2026-09-10
+                    —
+                    3
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="1011.1"
+                    cy="300.6"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="1013.3"
+                    cy="325.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="1017.7"
+                    cy="175.0"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="1019.9"
+                cy="200.0"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:4.67s">
+
+                <title>
+                    2026-09-14
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="1022.0"
+                    cy="224.9"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="1024.2"
+                cy="249.8"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:0.21s">
+
+                <title>
+                    2026-09-16
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="1026.4"
+                    cy="274.7"
+                    r="12.2"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="1026.4"
+                cy="274.7"
+                r="4.5"
+                fill="#eee7ff"
+                opacity="0.86"
+                filter="url(#glow)"
+                style="animation-delay:0.38s">
+
+                <title>
+                    2026-09-17
+                    —
+                    5
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="1028.6"
+                cy="299.6"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:0.55s">
+
+                <title>
+                    2026-09-18
+                    —
+                    1
+                    contribution
+                    
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="1030.7"
+                    cy="324.5"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="1035.1"
+                    cy="173.8"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+                <circle
+                    cx="1037.3"
+                    cy="198.7"
+                    r="1.1"
+                    fill="#8f89ad"
+                    opacity=".28"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="1039.5"
+                cy="223.6"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:0.13s">
+
+                <title>
+                    2026-09-22
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="1041.7"
+                    cy="248.5"
+                    r="12.2"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="1041.7"
+                cy="248.5"
+                r="4.5"
+                fill="#eee7ff"
+                opacity="0.86"
+                filter="url(#glow)"
+                style="animation-delay:0.30s">
+
+                <title>
+                    2026-09-23
+                    —
+                    7
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="1043.8"
+                    cy="273.4"
+                    r="15.7"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="1043.8"
+                cy="273.4"
+                r="5.8"
+                fill="#eee7ff"
+                opacity="1.0"
+                filter="url(#glow)"
+                style="animation-delay:0.47s">
+
+                <title>
+                    2026-09-24
+                    —
+                    9
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="1046.0"
+                cy="298.3"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:0.64s">
+
+                <title>
+                    2026-09-25
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="1048.2"
+                    cy="323.2"
+                    r="12.2"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="1048.2"
+                cy="323.2"
+                r="4.5"
+                fill="#eee7ff"
+                opacity="0.86"
+                filter="url(#glow)"
+                style="animation-delay:0.81s">
+
+                <title>
+                    2026-09-26
+                    —
+                    7
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="1052.6"
+                    cy="172.4"
+                    r="15.7"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="1052.6"
+                cy="172.4"
+                r="5.8"
+                fill="#eee7ff"
+                opacity="1.0"
+                filter="url(#glow)"
+                style="animation-delay:4.68s">
+
+                <title>
+                    2026-09-27
+                    —
+                    8
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="1054.8"
+                    cy="197.3"
+                    r="12.2"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="1054.8"
+                cy="197.3"
+                r="4.5"
+                fill="#eee7ff"
+                opacity="0.86"
+                filter="url(#glow)"
+                style="animation-delay:0.05s">
+
+                <title>
+                    2026-09-28
+                    —
+                    6
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+                <circle
+                    cx="1056.9"
+                    cy="222.2"
+                    r="15.7"
+                    fill="#c9b7ff"
+                    opacity=".10"
+                    filter="url(#softGlow)"/>
+                
+
+            <circle
+                class="twinkle"
+                cx="1056.9"
+                cy="222.2"
+                r="5.8"
+                fill="#eee7ff"
+                opacity="1.0"
+                filter="url(#glow)"
+                style="animation-delay:0.22s">
+
+                <title>
+                    2026-09-29
+                    —
+                    8
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+            <circle
+                class="twinkle"
+                cx="1059.1"
+                cy="247.1"
+                r="2.5"
+                fill="#eee7ff"
+                opacity="0.58"
+                filter="url(#glow)"
+                style="animation-delay:0.39s">
+
+                <title>
+                    2026-09-30
+                    —
+                    2
+                    contribution
+                    s
+                </title>
+
+            </circle>
+            
+
+<g opacity=".75">
+
+    <path
+        d="M875 92 L820 116"
+        stroke="#e8ddff"
+        stroke-width="2"
+        stroke-linecap="round">
+
+        <animate
+            attributeName="opacity"
+            values="0;.8;0"
+            dur="7s"
+            repeatCount="indefinite"/>
+
+    </path>
+
+
+    <circle
+        cx="875"
+        cy="92"
+        r="2.6"
+        fill="#fff"
+        filter="url(#glow)">
+
+        <animate
+            attributeName="cx"
+            values="875;805;875"
+            dur="7s"
+            repeatCount="indefinite"/>
+
+        <animate
+            attributeName="cy"
+            values="92;122;92"
+            dur="7s"
+            repeatCount="indefinite"/>
+
+        <animate
+            attributeName="opacity"
+            values="0;1;0"
+            dur="7s"
+            repeatCount="indefinite"/>
+
+    </circle>
+
+</g>
+
+
+<text
+    x="600"
+    y="388"
+    text-anchor="middle"
+    fill="#dcd5f2"
+    font-size="14"
+    class="caption">
+
+    EVERY LITTLE CONTRIBUTION BECOMES A STAR ✦
+
+</text>
+
+
+<text
+    x="600"
+    y="410"
+    text-anchor="middle"
+    fill="#8f89ad"
+    font-size="10"
+    class="caption">
+
+    GitHub activity • MinalMaurya
+
+</text>
+
+
+</svg>
