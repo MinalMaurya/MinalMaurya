@@ -9,8 +9,6 @@
   alt="Typing animation"
 />
 
----
-
 ## 🌷 A little about me
 
 - 🎓 M.Sc. Data Science student
