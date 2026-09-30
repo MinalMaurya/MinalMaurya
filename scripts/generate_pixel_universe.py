@@ -4,6 +4,7 @@ import base64
 import math
 import urllib.request
 import urllib.error
+from datetime import datetime
 
 
 # ============================================================
@@ -13,7 +14,11 @@ import urllib.error
 GH_USER = os.environ.get("GH_USER", "MinalMaurya")
 GH_TOKEN = os.environ.get("GH_TOKEN")
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__)
+    )
+)
 
 BACKGROUND_PATH = os.path.join(
     BASE_DIR,
@@ -29,7 +34,7 @@ OUTPUT_PATH = os.path.join(
 
 
 # ============================================================
-# WIDE RECTANGULAR CANVAS
+# CANVAS
 # ============================================================
 
 SVG_WIDTH = 2048
@@ -37,37 +42,51 @@ SVG_HEIGHT = 900
 
 
 # ============================================================
-# CONTRIBUTION GRID
+# STAR FIELD POSITION
+#
+# IMPORTANT:
+# The contribution constellation lives ONLY in the
+# upper portion of the image.
 # ============================================================
 
-GRID_X = 270
-GRID_Y = 245
+STAR_AREA_LEFT = 150
+STAR_AREA_RIGHT = 1890
 
-CELL_W = 28
-CELL_H = 35
+STAR_AREA_TOP = 135
+STAR_AREA_BOTTOM = 450
+
+
+# ============================================================
+# CONTRIBUTION LAYOUT
+# ============================================================
 
 WEEKS = 53
 
+CELL_W = (
+    STAR_AREA_RIGHT - STAR_AREA_LEFT
+) / WEEKS
+
+CELL_H = (
+    STAR_AREA_BOTTOM - STAR_AREA_TOP
+) / 7
+
 
 # ============================================================
-# COLORS
+# STAR COLORS
 # ============================================================
-
-DOT_COLOR = "#8aa8ff"
 
 STAR_BLUE = "#8db7ff"
 STAR_CYAN = "#7ee7ff"
 STAR_PURPLE = "#c9a7ff"
 STAR_GOLD = "#ffd66b"
 
-LABEL_COLOR = "#b8c5ff"
-LINE_COLOR = "#91a8ff"
-
 WHITE = "#ffffff"
+
+LINE_COLOR = "#91a8ff"
 
 
 # ============================================================
-# HELPERS
+# XML HELPER
 # ============================================================
 
 def escape_xml(value):
@@ -81,27 +100,39 @@ def escape_xml(value):
     )
 
 
+# ============================================================
+# LOAD BACKGROUND
+# ============================================================
+
 def load_background():
-    """Load the existing cosmic PNG and embed it in the SVG."""
+    """
+    Load the existing cosmic PNG and embed it
+    directly inside the SVG.
+    """
 
     if not os.path.exists(BACKGROUND_PATH):
         raise FileNotFoundError(
-            f"Background image not found:\n{BACKGROUND_PATH}"
+            f"Background image not found:\n"
+            f"{BACKGROUND_PATH}"
         )
 
-    with open(BACKGROUND_PATH, "rb") as file:
+    with open(
+        BACKGROUND_PATH,
+        "rb"
+    ) as file:
+
         return base64.b64encode(
             file.read()
         ).decode("ascii")
 
 
 # ============================================================
-# NORMALIZE GITHUB WEEK DATA
+# GITHUB WEEK NORMALIZATION
 # ============================================================
 
 def get_week_days(week):
     """
-    GitHub GraphQL returns weeks like:
+    GitHub GraphQL returns weeks in this form:
 
     {
         "contributionDays": [
@@ -112,7 +143,7 @@ def get_week_days(week):
         ]
     }
 
-    This function also supports a plain list of days.
+    This also accepts a plain list for safety.
     """
 
     if isinstance(week, list):
@@ -133,10 +164,7 @@ def get_week_days(week):
 
 def normalize_weeks(weeks):
     """
-    Convert GitHub's contribution-calendar response
-    into a simple list-of-lists structure.
-
-    Result:
+    Convert GitHub's response into:
 
         [
             [day, day, day, ...],
@@ -146,6 +174,12 @@ def normalize_weeks(weeks):
     """
 
     normalized = []
+
+    if not isinstance(weeks, list):
+        raise TypeError(
+            "Expected GitHub weeks to be a list, "
+            f"got {type(weeks).__name__}"
+        )
 
     for week in weeks:
 
@@ -189,12 +223,14 @@ def get_contributions():
     }
     """
 
-    payload = json.dumps({
-        "query": query,
-        "variables": {
-            "login": GH_USER
+    payload = json.dumps(
+        {
+            "query": query,
+            "variables": {
+                "login": GH_USER
+            }
         }
-    }).encode("utf-8")
+    ).encode("utf-8")
 
     request = urllib.request.Request(
         "https://api.github.com/graphql",
@@ -209,7 +245,10 @@ def get_contributions():
 
     try:
 
-        with urllib.request.urlopen(request) as response:
+        with urllib.request.urlopen(
+            request
+        ) as response:
+
             result = json.loads(
                 response.read().decode("utf-8")
             )
@@ -222,13 +261,15 @@ def get_contributions():
         )
 
         raise RuntimeError(
-            f"GitHub API error {error.code}:\n{body}"
+            f"GitHub API error {error.code}:\n"
+            f"{body}"
         )
 
     except urllib.error.URLError as error:
 
         raise RuntimeError(
-            f"Could not connect to GitHub:\n{error}"
+            f"Could not connect to GitHub:\n"
+            f"{error}"
         )
 
     if "errors" in result:
@@ -252,8 +293,8 @@ def get_contributions():
     if not calendar:
 
         raise RuntimeError(
-            f"Could not retrieve contribution calendar "
-            f"for {GH_USER}"
+            f"Could not retrieve contribution "
+            f"calendar for {GH_USER}"
         )
 
     return calendar
@@ -288,8 +329,15 @@ def star_points(
             else inner_radius
         )
 
-        x = cx + math.cos(angle) * radius
-        y = cy + math.sin(angle) * radius
+        x = (
+            cx
+            + math.cos(angle) * radius
+        )
+
+        y = (
+            cy
+            + math.sin(angle) * radius
+        )
 
         coordinates.append(
             f"{x:.2f},{y:.2f}"
@@ -304,57 +352,57 @@ def star_points(
 
 def get_star_style(count):
 
+    # 1 contribution
     if count == 1:
 
         return {
             "points": 4,
-            "outer": 4.5,
-            "inner": 1.5,
+            "outer": 3.5,
+            "inner": 1.1,
             "color": STAR_BLUE,
-            "glow": 0.45,
-            "duration": 4.2
+            "duration": 4.8
         }
 
+    # 2 - 3 contributions
     if count <= 3:
 
         return {
             "points": 4,
-            "outer": 5.5,
-            "inner": 1.8,
+            "outer": 4.5,
+            "inner": 1.3,
             "color": STAR_CYAN,
-            "glow": 0.55,
-            "duration": 3.8
+            "duration": 4.3
         }
 
+    # 4 - 6 contributions
     if count <= 6:
 
         return {
             "points": 6,
-            "outer": 7.0,
-            "inner": 2.4,
+            "outer": 6.0,
+            "inner": 1.9,
             "color": STAR_CYAN,
-            "glow": 0.65,
-            "duration": 3.4
+            "duration": 3.8
         }
 
+    # 7 - 9 contributions
     if count <= 9:
 
         return {
             "points": 8,
-            "outer": 8.5,
-            "inner": 2.8,
+            "outer": 8.0,
+            "inner": 2.4,
             "color": STAR_PURPLE,
-            "glow": 0.72,
-            "duration": 3.0
+            "duration": 3.3
         }
 
+    # 10+ contributions
     return {
         "points": 8,
         "outer": 11.0,
-        "inner": 3.4,
+        "inner": 3.1,
         "color": STAR_GOLD,
-        "glow": 0.90,
-        "duration": 2.7
+        "duration": 2.8
     }
 
 
@@ -367,48 +415,9 @@ def animation_delay(
     multiplier=0.37
 ):
 
-    return f"{(index * multiplier) % 6:.2f}s"
-
-
-# ============================================================
-# EMPTY CONTRIBUTION DAY
-# ============================================================
-
-def make_empty_day(
-    cx,
-    cy,
-    index
-):
-
-    delay = animation_delay(
-        index,
-        0.41
+    return (
+        f"{(index * multiplier) % 6:.2f}s"
     )
-
-    return f"""
-    <circle
-        cx="{cx:.2f}"
-        cy="{cy:.2f}"
-        r="1.7"
-        fill="{DOT_COLOR}"
-        opacity="0.20">
-
-        <animate
-            attributeName="opacity"
-            values="0.16;0.72;0.16"
-            dur="4.8s"
-            begin="{delay}"
-            repeatCount="indefinite" />
-
-        <animate
-            attributeName="r"
-            values="1.5;2.4;1.5"
-            dur="4.8s"
-            begin="{delay}"
-            repeatCount="indefinite" />
-
-    </circle>
-    """
 
 
 # ============================================================
@@ -439,61 +448,94 @@ def make_contribution_star(
     )
 
     title = escape_xml(
-        f"{contribution_date} — {count} contributions"
+        f"{contribution_date} — "
+        f"{count} contributions"
     )
+
+    outer = style["outer"]
 
     return f"""
     <g>
 
+        <!--
+            Native SVG tooltip.
+            Hovering over the star shows:
+            date + contribution count.
+        -->
         <title>{title}</title>
 
+        <!-- Outer atmospheric glow -->
         <circle
             cx="{cx:.2f}"
             cy="{cy:.2f}"
-            r="{style["outer"] * 1.55:.2f}"
+            r="{outer * 2.0:.2f}"
             fill="{style["color"]}"
-            opacity="{style["glow"]:.2f}"
-            filter="url(#softGlow)">
+            opacity="0.12"
+            filter="url(#softGlow)"
+        >
 
             <animate
                 attributeName="opacity"
-                values="0.12;0.34;0.12"
-                dur="{style["duration"] + 1.0:.1f}s"
+                values="0.05;0.24;0.05"
+                dur="{style["duration"]:.1f}s"
                 begin="{delay}"
-                repeatCount="indefinite" />
+                repeatCount="indefinite"
+            />
 
             <animate
                 attributeName="r"
-                values="{style["outer"] * 1.35:.2f};{style["outer"] * 1.75:.2f};{style["outer"] * 1.35:.2f}"
-                dur="{style["duration"] + 1.0:.1f}s"
+                values="
+                    {outer * 1.35:.2f};
+                    {outer * 2.10:.2f};
+                    {outer * 1.35:.2f}
+                "
+                dur="{style["duration"]:.1f}s"
                 begin="{delay}"
-                repeatCount="indefinite" />
+                repeatCount="indefinite"
+            />
 
         </circle>
 
+
+        <!-- Main star -->
         <polygon
             points="{points}"
             fill="{style["color"]}"
             stroke="{WHITE}"
             stroke-width="0.35"
-            opacity="0.95">
+            opacity="0.90"
+        >
+
+            <!-- Gentle twinkle -->
+            <animate
+                attributeName="opacity"
+                values="0.58;1;0.58"
+                dur="{style["duration"]:.1f}s"
+                begin="{delay}"
+                repeatCount="indefinite"
+            />
+
+        </polygon>
+
+
+        <!-- Bright center -->
+        <circle
+            cx="{cx:.2f}"
+            cy="{cy:.2f}"
+            r="{max(0.7, outer * 0.16):.2f}"
+            fill="{WHITE}"
+            opacity="0.70"
+        >
 
             <animate
                 attributeName="opacity"
-                values="0.72;1;0.72"
+                values="0.35;1;0.35"
                 dur="{style["duration"]:.1f}s"
                 begin="{delay}"
-                repeatCount="indefinite" />
+                repeatCount="indefinite"
+            />
 
-            <animateTransform
-                attributeName="transform"
-                type="scale"
-                values="0.92;1.08;0.92"
-                dur="{style["duration"]:.1f}s"
-                begin="{delay}"
-                repeatCount="indefinite" />
-
-        </polygon>
+        </circle>
 
     </g>
     """
@@ -517,67 +559,39 @@ def make_constellation_line(
         x2="{x2:.2f}"
         y2="{y2:.2f}"
         stroke="{LINE_COLOR}"
-        stroke-width="0.65"
-        opacity="0.13" />
+        stroke-width="0.45"
+        opacity="0.08"
+    />
     """
 
 
 # ============================================================
-# MONTH POSITIONS
+# DAY POSITION
 # ============================================================
 
-def get_month_positions(weeks):
+def get_day_index(date_string):
+    """
+    Return Monday=0 ... Sunday=6.
 
-    positions = []
+    Using the actual date makes the star positions
+    independent of the order returned by the API.
+    """
 
-    previous_month = None
+    try:
 
-    for week_index, days in enumerate(weeks):
-
-        if not days:
-            continue
-
-        first_day = days[0]
-
-        if not isinstance(
-            first_day,
-            dict
-        ):
-            continue
-
-        first_date = first_day.get(
-            "date",
-            ""
+        date = datetime.strptime(
+            date_string,
+            "%Y-%m-%d"
         )
 
-        if not first_date:
-            continue
+        return date.weekday()
 
-        try:
+    except (
+        ValueError,
+        TypeError
+    ):
 
-            current_month = int(
-                first_date[5:7]
-            )
-
-        except (
-            ValueError,
-            IndexError
-        ):
-
-            continue
-
-        if current_month != previous_month:
-
-            positions.append(
-                (
-                    week_index,
-                    current_month
-                )
-            )
-
-            previous_month = current_month
-
-    return positions
+        return None
 
 
 # ============================================================
@@ -593,184 +607,75 @@ def generate_svg(calendar):
         []
     )
 
-    # IMPORTANT:
-    # Convert GitHub's dictionary-based week structure
-    # into simple lists before doing anything else.
-
+    # Normalize GitHub's dictionary structure.
     weeks = normalize_weeks(
         raw_weeks
     )
 
-    total_contributions = calendar.get(
-        "totalContributions",
-        0
-    )
-
     svg_parts = []
 
-    # --------------------------------------------------------
+    # ========================================================
     # SVG HEADER
-    # --------------------------------------------------------
-
-    svg_parts.append(
-        f"""<svg
-xmlns="http://www.w3.org/2000/svg"
-xmlns:xlink="http://www.w3.org/1999/xlink"
-width="{SVG_WIDTH}"
-height="{SVG_HEIGHT}"
-viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
-
-<defs>
-
-    <filter
-        id="softGlow"
-        x="-100%"
-        y="-100%"
-        width="300%"
-        height="300%">
-
-        <feGaussianBlur
-            stdDeviation="4"
-            result="blur" />
-
-    </filter>
-
-</defs>
-"""
-    )
-
-    # --------------------------------------------------------
-    # EXISTING COSMIC BACKGROUND
-    # --------------------------------------------------------
+    # ========================================================
 
     svg_parts.append(
         f"""
-<image
-    x="0"
-    y="0"
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
     width="{SVG_WIDTH}"
     height="{SVG_HEIGHT}"
-    preserveAspectRatio="xMidYMid slice"
-    href="data:image/png;base64,{background}" />
+    viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}"
+>
+
+    <defs>
+
+        <!-- Soft star glow -->
+        <filter
+            id="softGlow"
+            x="-100%"
+            y="-100%"
+            width="300%"
+            height="300%"
+        >
+
+            <feGaussianBlur
+                stdDeviation="4"
+                result="blur"
+            />
+
+        </filter>
+
+    </defs>
 """
     )
 
-    # --------------------------------------------------------
-    # SUBTLE GRID BACKPLATE
-    # --------------------------------------------------------
-
-    grid_width = (
-        WEEKS * CELL_W
-        + 20
-    )
-
-    grid_height = (
-        7 * CELL_H
-        + 20
-    )
+    # ========================================================
+    # COSMIC BACKGROUND
+    # ========================================================
 
     svg_parts.append(
         f"""
-<rect
-    x="{GRID_X - 10}"
-    y="{GRID_Y - 10}"
-    width="{grid_width}"
-    height="{grid_height}"
-    rx="12"
-    fill="#07112d"
-    opacity="0.12" />
+    <image
+        x="0"
+        y="0"
+        width="{SVG_WIDTH}"
+        height="{SVG_HEIGHT}"
+        preserveAspectRatio="xMidYMid slice"
+        href="data:image/png;base64,{background}"
+    />
 """
     )
 
-    # --------------------------------------------------------
-    # WEEKDAY LABELS
-    # --------------------------------------------------------
-
-    weekdays = [
-        ("Mon", 0),
-        ("Tue", 1),
-        ("Wed", 2),
-        ("Thu", 3),
-        ("Fri", 4),
-        ("Sat", 5),
-        ("Sun", 6)
-    ]
-
-    for label, row in weekdays:
-
-        y = (
-            GRID_Y
-            + row * CELL_H
-            + CELL_H * 0.65
-        )
-
-        svg_parts.append(
-            f"""
-<text
-    x="{GRID_X - 28}"
-    y="{y:.2f}"
-    text-anchor="end"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="11"
-    fill="{LABEL_COLOR}"
-    opacity="0.82">
-    {label}
-</text>
-"""
-        )
-
-    # --------------------------------------------------------
-    # MONTH LABELS
-    # --------------------------------------------------------
-
-    month_names = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec"
-    ]
-
-    month_positions = get_month_positions(
-        weeks
-    )
-
-    for week_index, month_number in month_positions:
-
-        if not 1 <= month_number <= 12:
-            continue
-
-        x = (
-            GRID_X
-            + week_index * CELL_W
-        )
-
-        svg_parts.append(
-            f"""
-<text
-    x="{x:.2f}"
-    y="{GRID_Y - 24}"
-    text-anchor="start"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="12"
-    font-weight="500"
-    fill="{LABEL_COLOR}"
-    opacity="0.88">
-    {month_names[month_number - 1]}
-</text>
-"""
-        )
-
-    # --------------------------------------------------------
-    # CONTRIBUTION DAYS
-    # --------------------------------------------------------
+    # ========================================================
+    # CONTRIBUTION STARS
+    #
+    # ONLY stars are drawn.
+    # No grid.
+    # No labels.
+    # No empty cells.
+    # No footer.
+    # ========================================================
 
     active_stars = []
 
@@ -780,9 +685,10 @@ viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
         weeks[:WEEKS]
     ):
 
-        for day_index, day in enumerate(
-            days[:7]
-        ):
+        if not days:
+            continue
+
+        for day in days:
 
             if not isinstance(
                 day,
@@ -797,60 +703,81 @@ viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
                 )
             )
 
+            # Empty contribution days are invisible.
+            if count <= 0:
+                continue
+
             contribution_date = day.get(
                 "date",
                 ""
             )
 
+            if not contribution_date:
+                continue
+
+            # ------------------------------------------------
+            # Find the actual weekday.
+            # Monday = 0
+            # Sunday = 6
+            # ------------------------------------------------
+
+            day_index = get_day_index(
+                contribution_date
+            )
+
+            if day_index is None:
+                continue
+
+            # ------------------------------------------------
+            # X position
+            # ------------------------------------------------
+
             cx = (
-                GRID_X
+                STAR_AREA_LEFT
                 + week_index * CELL_W
                 + CELL_W / 2
             )
 
+            # ------------------------------------------------
+            # Y position
+            #
+            # The entire contribution constellation stays
+            # in the TOP section of the image.
+            # ------------------------------------------------
+
             cy = (
-                GRID_Y
+                STAR_AREA_TOP
                 + day_index * CELL_H
                 + CELL_H / 2
             )
 
-            if count <= 0:
+            # ------------------------------------------------
+            # Create star
+            # ------------------------------------------------
 
-                svg_parts.append(
-                    make_empty_day(
-                        cx,
-                        cy,
-                        contribution_index
-                    )
+            svg_parts.append(
+                make_contribution_star(
+                    cx,
+                    cy,
+                    count,
+                    contribution_index,
+                    contribution_date
                 )
+            )
 
-            else:
-
-                svg_parts.append(
-                    make_contribution_star(
-                        cx,
-                        cy,
-                        count,
-                        contribution_index,
-                        contribution_date
-                    )
+            active_stars.append(
+                (
+                    cx,
+                    cy,
+                    count
                 )
-
-                active_stars.append(
-                    (
-                        cx,
-                        cy,
-                        count
-                    )
-                )
+            )
 
             contribution_index += 1
 
-    # --------------------------------------------------------
-    # CONSTELLATION LINES
-    # --------------------------------------------------------
-    # ONLY connects nearby real contribution stars.
-    # No decorative orbiting/rotating objects.
+    # ========================================================
+    # SUBTLE CONSTELLATION CONNECTIONS
+    # ========================================================
 
     for i, star_a in enumerate(
         active_stars
@@ -872,6 +799,7 @@ viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
                 + (y2 - y1) ** 2
             )
 
+            # Very subtle connections.
             if distance <= 48:
 
                 svg_parts.append(
@@ -883,44 +811,9 @@ viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">
                     )
                 )
 
-    # --------------------------------------------------------
-    # FOOTER
-    # --------------------------------------------------------
-
-    footer_y = SVG_HEIGHT - 42
-
-    svg_parts.append(
-        f"""
-<text
-    x="{SVG_WIDTH / 2:.2f}"
-    y="{footer_y}"
-    text-anchor="middle"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="14"
-    font-weight="600"
-    letter-spacing="3"
-    fill="{WHITE}"
-    opacity="0.88">
-
-    EVERY LITTLE CONTRIBUTION BECOMES A STAR
-
-</text>
-
-<text
-    x="{SVG_WIDTH / 2:.2f}"
-    y="{footer_y + 24}"
-    text-anchor="middle"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="10"
-    letter-spacing="1"
-    fill="{LABEL_COLOR}"
-    opacity="0.72">
-
-    {total_contributions} contributions in the last year
-
-</text>
-"""
-    )
+    # ========================================================
+    # CLOSE SVG
+    # ========================================================
 
     svg_parts.append(
         "</svg>"
@@ -953,11 +846,23 @@ def main():
         f"Output: {OUTPUT_PATH}"
     )
 
+    # --------------------------------------------------------
+    # Get GitHub contribution data
+    # --------------------------------------------------------
+
     calendar = get_contributions()
+
+    # --------------------------------------------------------
+    # Generate SVG
+    # --------------------------------------------------------
 
     svg = generate_svg(
         calendar
     )
+
+    # --------------------------------------------------------
+    # Ensure output directory exists
+    # --------------------------------------------------------
 
     os.makedirs(
         os.path.dirname(
@@ -965,6 +870,10 @@ def main():
         ),
         exist_ok=True
     )
+
+    # --------------------------------------------------------
+    # Write SVG
+    # --------------------------------------------------------
 
     with open(
         OUTPUT_PATH,
@@ -974,7 +883,12 @@ def main():
 
         file.write(svg)
 
+    # --------------------------------------------------------
+    # Success information
+    # --------------------------------------------------------
+
     print()
+
     print(
         "Pixel Universe generated successfully."
     )
@@ -991,6 +905,10 @@ def main():
         f"SVG saved to: {OUTPUT_PATH}"
     )
 
+
+# ============================================================
+# ENTRY POINT
+# ============================================================
 
 if __name__ == "__main__":
     main()
