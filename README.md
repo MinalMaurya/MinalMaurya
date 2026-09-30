@@ -166,10 +166,6 @@ IIT Ropar
   width="100%"
 />
 
-<br>
-
-<sub>every little contribution becomes a star ✦</sub>
-
 </div>
 
 ---
