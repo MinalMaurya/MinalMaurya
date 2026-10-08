@@ -6923,6 +6923,91 @@
     </g>
     
 
+    <g>
+
+        <!--
+            Native SVG tooltip.
+            Hovering over the star shows:
+            date + contribution count.
+        -->
+        <title>2026-10-08 — 2 contributions</title>
+
+        <!-- Outer atmospheric glow -->
+        <circle
+            cx="1873.58"
+            cy="292.50"
+            r="9.00"
+            fill="#7ee7ff"
+            opacity="0.12"
+            filter="url(#softGlow)"
+        >
+
+            <animate
+                attributeName="opacity"
+                values="0.05;0.24;0.05"
+                dur="4.3s"
+                begin="0.93s"
+                repeatCount="indefinite"
+            />
+
+            <animate
+                attributeName="r"
+                values="
+                    6.08;
+                    9.45;
+                    6.08
+                "
+                dur="4.3s"
+                begin="0.93s"
+                repeatCount="indefinite"
+            />
+
+        </circle>
+
+
+        <!-- Main star -->
+        <polygon
+            points="1873.58,288.00 1874.50,291.58 1878.08,292.50 1874.50,293.42 1873.58,297.00 1872.67,293.42 1869.08,292.50 1872.67,291.58"
+            fill="#7ee7ff"
+            stroke="#ffffff"
+            stroke-width="0.35"
+            opacity="0.90"
+        >
+
+            <!-- Gentle twinkle -->
+            <animate
+                attributeName="opacity"
+                values="0.58;1;0.58"
+                dur="4.3s"
+                begin="0.93s"
+                repeatCount="indefinite"
+            />
+
+        </polygon>
+
+
+        <!-- Bright center -->
+        <circle
+            cx="1873.58"
+            cy="292.50"
+            r="0.72"
+            fill="#ffffff"
+            opacity="0.70"
+        >
+
+            <animate
+                attributeName="opacity"
+                values="0.35;1;0.35"
+                dur="4.3s"
+                begin="0.93s"
+                repeatCount="indefinite"
+            />
+
+        </circle>
+
+    </g>
+    
+
     <line
         x1="494.72"
         y1="337.50"
@@ -8003,9 +8088,31 @@
 
     <line
         x1="1840.75"
+        y1="292.50"
+        x2="1873.58"
+        y2="292.50"
+        stroke="#91a8ff"
+        stroke-width="0.45"
+        opacity="0.08"
+    />
+    
+
+    <line
+        x1="1840.75"
         y1="337.50"
         x2="1840.75"
         y2="382.50"
+        stroke="#91a8ff"
+        stroke-width="0.45"
+        opacity="0.08"
+    />
+    
+
+    <line
+        x1="1873.58"
+        y1="247.50"
+        x2="1873.58"
+        y2="292.50"
         stroke="#91a8ff"
         stroke-width="0.45"
         opacity="0.08"
