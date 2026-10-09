@@ -71,8 +71,6 @@ A collaborative project that converts natural-language workflow descriptions int
 
 ## 🛠️ Technologies & Tools
 
-<div align="center">
-
 ### Languages
 
 <img src="https://skillicons.dev/icons?i=python,java,js,cpp,html,css" />
@@ -89,20 +87,14 @@ A collaborative project that converts natural-language workflow descriptions int
 
 <img src="https://skillicons.dev/icons?i=git,github,vscode" />
 
-</div>
-
 ---
 
 ## 🌱 Currently exploring
 
-<div align="center">
-
 <img
-  src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=2500&pause=800&color=5B8DEF&center=true&vCenter=true&width=600&lines=Artificial+Intelligence+%26+Machine+Learning;Data+Science;Full-Stack+Development;Data+Visualization;Learning+by+Building"
+  src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=2500&pause=800&color=5B8DEF&center=false&vCenter=true&width=600&lines=Artificial+Intelligence+%26+Machine+Learning;Data+Science;Full-Stack+Development;Data+Visualization;Learning+by+Building"
   alt="Currently exploring"
 />
-
-</div>
 
 ---
 
@@ -128,27 +120,32 @@ IIT Ropar
 
 ---
 
-## 🌷 GitHub Activity
+## 📊 GitHub Statistics
 
-<div align="center">
+<table>
+  <tr>
+    <td width="60%">
+      <img src="./assets/github-stats.svg" width="100%" alt="Minal's live GitHub statistics, including lifetime contributions" />
+    </td>
+    <td width="40%">
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MinalMaurya&layout=compact&hide_border=true&bg_color=FDF7FB&title_color=5B8DEF&text_color=6B5B73" width="100%" alt="Minal's most used programming languages" />
+    </td>
+  </tr>
+</table>
 
 <img
-  src="https://streak-stats.demolab.com?user=MinalMaurya&hide_border=true&background=f5f9ff&ring=5B8DEF&fire=3B82F6&currStreakLabel=4F7CAC&sideLabels=5277A8&dates=7B8FA6&stroke=DCE8FF"
-  alt="Minal's GitHub contribution streak"
+  src="https://streak-stats.demolab.com?user=MinalMaurya&starting_year=2026&timezone=Asia%2FKolkata&hide_border=true&background=FDF7FB&ring=7FA9FF&fire=E889B9&currStreakNum=5B8DEF&sideNums=5B8DEF&currStreakLabel=8F64A7&sideLabels=6B5B73&dates=8A7C91&stroke=F3DDEB"
+  alt="Minal's 2026 contributions, current streak, and longest streak"
 />
 
-<br><br>
+<br>
 
 <sub>🌸 little commits, little progress, one project at a time ✨</sub>
-
-</div>
 
 ---
 
 
 ## 🌸 A Little Coding Mood
-
-<div align="center">
 
 <img
   src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif"
@@ -156,13 +153,9 @@ IIT Ropar
   alt="Coding animation"
 />
 
-</div>
-
 ---
 
 ## ✨ Outside the Code
-
-<div align="center">
 
 **💡 Ideas → 💻 Code → 🧪 Test → 🚀 Build**
 
@@ -170,13 +163,9 @@ IIT Ropar
 
 Learning • Building • Experimenting • Growing
 
-</div>
-
 ---
 
 ## 🌷 Let's Connect
-
-<div align="center">
 
 <a href="https://github.com/MinalMaurya">
   <img src="https://img.shields.io/badge/GitHub-MinalMaurya-315A7D?style=for-the-badge&logo=github" />
@@ -186,17 +175,11 @@ Learning • Building • Experimenting • Growing
   <img src="https://img.shields.io/badge/LinkedIn-Minal%20Maurya-4F7CAC?style=for-the-badge&logo=linkedin" />
 </a>
 
-</div>
-
 <br>
-
-<div align="center">
 
 ### 🌱 Thanks for stopping by!
 
 <sub>Building quietly, learning continuously, and turning ideas into projects ✨</sub>
-
-</div>
 
 <br>
 
