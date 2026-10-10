@@ -2,33 +2,47 @@ name: Update GitHub statistics
 
 on:
   schedule:
-    - cron: "0 22 * * *"
+    # Shortest cron interval supported by GitHub Actions (every 5 minutes).
+    # Actual execution and README updates remain subject to GitHub Actions
+    # scheduler load, GraphQL API propagation delays, and README image caching.
+    - cron: "*/5 * * * *"
   push:
-    paths:
-      - ".github/workflows/update-github-stats.yml"
-      - "scripts/update-github-stats.mjs"
-      - "README.md"
+    branches:
+      - main
+    paths-ignore:
+      - "assets/github-stats.svg"
+      - "assets/streak-stats.svg"
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 permissions:
   contents: write
 
 jobs:
   update:
+    if: github.event_name != 'push' || github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
 
       - name: Generate GitHub statistics
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN || secrets.STATS_TOKEN || github.token }}
           GH_USER: ${{ github.repository_owner }}
+          STATS_TIMEZONE: Asia/Kolkata
         run: node scripts/update-github-stats.mjs
 
       - name: Publish updated statistics
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/github-stats.svg
-          git diff --cached --quiet || git commit -m "chore: update GitHub statistics"
-          git push
+          git add assets/github-stats.svg assets/streak-stats.svg
+          if git diff --cached --quiet; then
+            echo "No changes to GitHub statistics SVGs; skipping commit."
+          else
+            git commit -m "chore: update GitHub statistics [skip ci]"
+            git push
+          fi

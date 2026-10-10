@@ -9,6 +9,8 @@
   alt="Typing animation"
 />
 
+</div>
+
 ## 🌷 A little about me
 
 - 🎓 M.Sc. Data Science student
@@ -19,97 +21,84 @@
 - 🧩 Enjoy solving problems through practical projects
 - 🌱 Learning something new with every project
 
----
+## ✨ Featured Projects
 
-## ✨ Featured projects
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top" align="left">
+      <div align="left" style="border: 1px solid #d0d7de; border-radius: 10px; padding: 16px;">
+        <h3>⚖️ NiyamCheck</h3>
+        <p>A consumer-focused system for checking packaged-product information against Legal Metrology requirements.</p>
+        <p><strong>Tech:</strong> React, FastAPI, Python, OCR, Legal Knowledge Base</p>
+        <p>🔗 <a href="https://github.com/MinalMaurya/NiyamCheck">View Repository</a></p>
+      </div>
+    </td>
+    <td width="50%" valign="top" align="left">
+      <div align="left" style="border: 1px solid #d0d7de; border-radius: 10px; padding: 16px;">
+        <h3>📝 SmartEval</h3>
+        <p>An online examination and evaluation system prototype supporting exam creation, scheduling, and student participation.</p>
+        <p><strong>Tech:</strong> JavaScript, Node.js, Express, MongoDB</p>
+        <p>🔗 <a href="https://github.com/MinalMaurya/SmartEval">View Repository</a></p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top" align="left">
+      <div align="left" style="border: 1px solid #d0d7de; border-radius: 10px; padding: 16px;">
+        <h3>🧠 Academic Stress Analyzer</h3>
+        <p>A fuzzy-logic project analyzing academic stress and workload from academic and lifestyle factors, with stress insights and recommendations.</p>
+        <p><strong>Tech:</strong> Python, Fuzzy Logic, JavaScript, Data Visualization</p>
+        <p>🔗 <a href="https://github.com/MinalMaurya/academic_stress_analyzer">View Repository</a></p>
+      </div>
+    </td>
+    <td width="50%" valign="top" align="left">
+      <div align="left" style="border: 1px solid #d0d7de; border-radius: 10px; padding: 16px;">
+        <h3>🔄 CodeHexaFlow</h3>
+        <p>A collaborative project that converts natural-language workflow descriptions into structured, editable workflow diagrams.</p>
+        <p><strong>Tech:</strong> AI, NLP, React, Workflow Visualization</p>
+        <p>🔗 <a href="https://github.com/MinalMaurya/CodeHexa">View Repository</a></p>
+      </div>
+    </td>
+  </tr>
+</table>
 
-### ⚖️ NiyamCheck
 
-**Software System for Compliance Checking of Packaged Commodities**
-
-A consumer-focused system designed to help check packaged-product information against Legal Metrology requirements.
-
-**Tech:** React · FastAPI · Python · OCR · Legal Knowledge Base
-
-🔗 [View Repository](https://github.com/MinalMaurya/NiyamCheck)
-
----
-
-### 📝 SmartEval
-
-**Online Examination & Evaluation System**
-
-A web-based examination system prototype exploring digital examination workflows, including exam creation, scheduling and student participation.
-
-**Tech:** JavaScript · Node.js · Express · MongoDB
-
-🔗 [View Repository](https://github.com/MinalMaurya/SmartEval)
-
----
-
-### 🧠 Academic Stress Analyzer
-
-A fuzzy-logic based project for analyzing academic stress and workload from academic and lifestyle factors, with stress insights and recommendations.
-
-**Tech:** Python · Fuzzy Logic · JavaScript · Data Visualization
-
-🔗 [View Repository](https://github.com/MinalMaurya/academic_stress_analyzer)
-
----
-
-### 🔄 CodehexaFlow
-
-**Workflow Detection & Diagram Generation**
-
-A collaborative project that converts natural-language workflow descriptions into structured, editable workflow diagrams.
-
-**Tech:** AI · NLP · React · Workflow Visualization
-
-🔗 [View Repository](https://github.com/MinalMaurya/CodeHexa)
-
----
 
 ## 🛠️ Technologies & Tools
 
 ### Languages
 
-<img src="https://skillicons.dev/icons?i=python,java,js,cpp,html,css" />
+<img src="https://skillicons.dev/icons?i=python,java,js,cpp,html,css" alt="Languages: Python, Java, JavaScript, C++, HTML, CSS" />
 
 ### Development
 
-<img src="https://skillicons.dev/icons?i=react,nodejs,express,fastapi,bootstrap" />
+<img src="https://skillicons.dev/icons?i=react,nodejs,express,fastapi,bootstrap" alt="Development: React, Node.js, Express, FastAPI, Bootstrap" />
 
 ### Data & Databases
 
-<img src="https://skillicons.dev/icons?i=mysql,mongodb" />
+<img src="https://skillicons.dev/icons?i=mysql,mongodb" alt="Data and Databases: MySQL, MongoDB" />
 
 ### Tools
 
-<img src="https://skillicons.dev/icons?i=git,github,vscode" />
+<img src="https://skillicons.dev/icons?i=git,github,vscode" alt="Tools: Git, GitHub, VS Code" />
 
----
 
-## 🌱 Currently exploring
+## 🌱 Currently Exploring
+
+Exploring **Artificial Intelligence & Machine Learning**, **Data Science**, **Full-Stack Development**, **Data Visualization**, and **Learning by Building**.
 
 <img
   src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=2500&pause=800&color=5B8DEF&center=false&vCenter=true&width=600&lines=Artificial+Intelligence+%26+Machine+Learning;Data+Science;Full-Stack+Development;Data+Visualization;Learning+by+Building"
   alt="Currently exploring"
 />
 
----
 
 ## 🎓 Education
 
-**M.Sc. Data Science**  
-Thakur College of Science & Commerce
+- **M.Sc. Data Science** — Thakur College of Science & Commerce
+- **B.Sc. Computer Science** — Thakur College
+- **Minor in Artificial Intelligence** — IIT Ropar
 
-**B.Sc. Computer Science**  
-Thakur College
-
-**Minor in Artificial Intelligence**  
-IIT Ropar
-
----
 
 ## 💼 Experience & Project Areas
 
@@ -118,7 +107,6 @@ IIT Ropar
 - 🤖 **AI / Full-Stack Projects** — React, Python, FastAPI, Node.js
 - 🧪 **Academic & Hackathon Projects** — Collaborative practical solutions
 
----
 
 ## 📊 GitHub Statistics
 
@@ -134,15 +122,13 @@ IIT Ropar
 </table>
 
 <img
-  src="https://streak-stats.demolab.com?user=MinalMaurya&starting_year=2026&timezone=Asia%2FKolkata&hide_border=true&background=FDF7FB&ring=7FA9FF&fire=E889B9&currStreakNum=5B8DEF&sideNums=5B8DEF&currStreakLabel=8F64A7&sideLabels=6B5B73&dates=8A7C91&stroke=F3DDEB"
+  src="./assets/streak-stats.svg"
   alt="Minal's 2026 contributions, current streak, and longest streak"
 />
 
 <br>
 
 <sub>🌸 little commits, little progress, one project at a time ✨</sub>
-
----
 
 
 ## 🌸 A Little Coding Mood
@@ -153,7 +139,7 @@ IIT Ropar
   alt="Coding animation"
 />
 
----
+<div align="center">
 
 ## ✨ Outside the Code
 
@@ -163,19 +149,16 @@ IIT Ropar
 
 Learning • Building • Experimenting • Growing
 
----
-
 ## 🌷 Let's Connect
 
-<a href="https://github.com/MinalMaurya">
-  <img src="https://img.shields.io/badge/GitHub-MinalMaurya-315A7D?style=for-the-badge&logo=github" />
-</a>
-
-<a href="https://www.linkedin.com/in/minal-maurya-a3196631b/">
-  <img src="https://img.shields.io/badge/LinkedIn-Minal%20Maurya-4F7CAC?style=for-the-badge&logo=linkedin" />
-</a>
-
-<br>
+<p align="center">
+  <a href="https://github.com/MinalMaurya">
+    <img src="https://img.shields.io/badge/GitHub-MinalMaurya-315A7D?style=for-the-badge&logo=github" alt="GitHub" />
+  </a>
+  <a href="https://www.linkedin.com/in/minal-maurya-a3196631b/">
+    <img src="https://img.shields.io/badge/LinkedIn-Minal%20Maurya-4F7CAC?style=for-the-badge&logo=linkedin" alt="LinkedIn" />
+  </a>
+</p>
 
 ### 🌱 Thanks for stopping by!
 
@@ -188,3 +171,5 @@ Learning • Building • Experimenting • Growing
   width="100%"
   alt="Soft pastel landscape"
 />
+
+</div>
