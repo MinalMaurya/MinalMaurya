@@ -87,11 +87,14 @@
 
 Exploring **Artificial Intelligence & Machine Learning**, **Data Science**, **Full-Stack Development**, **Data Visualization**, and **Learning by Building**.
 
+<div align="center">
+
 <img
-  src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=2500&pause=800&color=5B8DEF&center=false&vCenter=true&width=600&lines=Artificial+Intelligence+%26+Machine+Learning;Data+Science;Full-Stack+Development;Data+Visualization;Learning+by+Building"
+  src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=2500&pause=800&color=5B8DEF&center=true&vCenter=true&width=600&lines=Artificial+Intelligence+%26+Machine+Learning;Data+Science;Full-Stack+Development;Data+Visualization;Learning+by+Building"
   alt="Currently exploring"
 />
 
+</div>
 
 ## 🎓 Education
 
@@ -107,6 +110,7 @@ Exploring **Artificial Intelligence & Machine Learning**, **Data Science**, **Fu
 - 🤖 **AI / Full-Stack Projects** — React, Python, FastAPI, Node.js
 - 🧪 **Academic & Hackathon Projects** — Collaborative practical solutions
 
+<div align="center">
 
 ## 📊 GitHub Statistics
 
@@ -139,7 +143,6 @@ Exploring **Artificial Intelligence & Machine Learning**, **Data Science**, **Fu
   alt="Coding animation"
 />
 
-<div align="center">
 
 ## ✨ Outside the Code
 
