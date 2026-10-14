@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="isolation: isolate" viewBox="0 0 495 195" width="495px" height="195px" direction="ltr" role="img" aria-labelledby="streak-title streak-desc">
   <title id="streak-title">Minal Maurya's 2026 Contribution and Streak Stats</title>
-  <desc id="streak-desc">Total contributions in 2026: 227 (Jan 1, 2026 - Present). Current streak: 7 days (Oct 7 - Oct 13). Longest streak: 14 days (Jun 2 - Jun 15).</desc>
+  <desc id="streak-desc">Total contributions in 2026: 228 (Jan 1, 2026 - Present). Current streak: 8 days (Oct 7 - Oct 14). Longest streak: 14 days (Jun 2 - Jun 15).</desc>
   <style>
     @keyframes currstreak {
       0% { font-size: 3px; opacity: 0.2; }
@@ -33,7 +33,7 @@
       <!-- Total Contributions big number -->
       <g transform="translate(82.5, 48)">
         <text x="0" y="32" stroke-width="0" text-anchor="middle" fill="#5b8def" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="700" font-size="28px" font-style="normal" style="opacity: 0; animation: fadein 0.5s linear forwards 0.6s">
-          227
+          228
         </text>
       </g>
       <!-- Total Contributions label -->
@@ -59,7 +59,7 @@
       <!-- Current Streak range -->
       <g transform="translate(247.5, 145)">
         <text x="0" y="21" stroke-width="0" text-anchor="middle" fill="#8a7c91" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="12px" font-style="normal" style="opacity: 0; animation: fadein 0.5s linear forwards 0.9s">
-          Oct 7 - Oct 13
+          Oct 7 - Oct 14
         </text>
       </g>
       <!-- Ring around number -->
@@ -74,7 +74,7 @@
       <!-- Current Streak big number -->
       <g transform="translate(247.5, 48)">
         <text x="0" y="32" stroke-width="0" text-anchor="middle" fill="#5b8def" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="700" font-size="28px" font-style="normal" style="animation: currstreak 0.6s linear forwards">
-          7
+          8
         </text>
       </g>
     </g>
