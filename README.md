@@ -120,7 +120,7 @@ Exploring **Artificial Intelligence & Machine Learning**, **Data Science**, **Fu
       <img src="./assets/github-stats.svg" width="100%" alt="Minal's live GitHub statistics, including lifetime contributions" />
     </td>
     <td width="40%">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MinalMaurya&layout=compact&hide_border=true&bg_color=FDF7FB&title_color=5B8DEF&text_color=6B5B73" width="100%" alt="Minal's most used programming languages" />
+      <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=MinalMaurya&layout=compact&hide_border=true&bg_color=FDF7FB&title_color=5B8DEF&text_color=6B5B73" width="100%" alt="Minal's most used programming languages" />
     </td>
   </tr>
 </table>
