@@ -8793,6 +8793,91 @@
     </g>
     
 
+    <g>
+
+        <!--
+            Native SVG tooltip.
+            Hovering over the star shows:
+            date + contribution count.
+        -->
+        <title>2026-10-30 — 6 contributions</title>
+
+        <!-- Outer atmospheric glow -->
+        <circle
+            cx="1873.58"
+            cy="337.50"
+            r="12.00"
+            fill="#7ee7ff"
+            opacity="0.12"
+            filter="url(#softGlow)"
+        >
+
+            <animate
+                attributeName="opacity"
+                values="0.05;0.24;0.05"
+                dur="3.8s"
+                begin="0.59s"
+                repeatCount="indefinite"
+            />
+
+            <animate
+                attributeName="r"
+                values="
+                    8.10;
+                    12.60;
+                    8.10
+                "
+                dur="3.8s"
+                begin="0.59s"
+                repeatCount="indefinite"
+            />
+
+        </circle>
+
+
+        <!-- Main star -->
+        <polygon
+            points="1873.58,331.50 1874.53,335.85 1878.78,334.50 1875.48,337.50 1878.78,340.50 1874.53,339.15 1873.58,343.50 1872.63,339.15 1868.39,340.50 1871.68,337.50 1868.39,334.50 1872.63,335.85"
+            fill="#7ee7ff"
+            stroke="#ffffff"
+            stroke-width="0.35"
+            opacity="0.90"
+        >
+
+            <!-- Gentle twinkle -->
+            <animate
+                attributeName="opacity"
+                values="0.58;1;0.58"
+                dur="3.8s"
+                begin="0.59s"
+                repeatCount="indefinite"
+            />
+
+        </polygon>
+
+
+        <!-- Bright center -->
+        <circle
+            cx="1873.58"
+            cy="337.50"
+            r="0.96"
+            fill="#ffffff"
+            opacity="0.70"
+        >
+
+            <animate
+                attributeName="opacity"
+                values="0.35;1;0.35"
+                dur="3.8s"
+                begin="0.59s"
+                repeatCount="indefinite"
+            />
+
+        </circle>
+
+    </g>
+    
+
     <line
         x1="396.23"
         y1="337.50"
@@ -10279,6 +10364,17 @@
     
 
     <line
+        x1="1840.75"
+        y1="337.50"
+        x2="1873.58"
+        y2="337.50"
+        stroke="#91a8ff"
+        stroke-width="0.45"
+        opacity="0.08"
+    />
+    
+
+    <line
         x1="1873.58"
         y1="157.50"
         x2="1873.58"
@@ -10305,6 +10401,17 @@
         y1="247.50"
         x2="1873.58"
         y2="292.50"
+        stroke="#91a8ff"
+        stroke-width="0.45"
+        opacity="0.08"
+    />
+    
+
+    <line
+        x1="1873.58"
+        y1="292.50"
+        x2="1873.58"
+        y2="337.50"
         stroke="#91a8ff"
         stroke-width="0.45"
         opacity="0.08"
