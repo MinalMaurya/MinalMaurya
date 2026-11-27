@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="isolation: isolate" viewBox="0 0 495 195" width="495px" height="195px" direction="ltr" role="img" aria-labelledby="streak-title streak-desc">
   <title id="streak-title">Minal Maurya's 2026 Contribution and Streak Stats</title>
-  <desc id="streak-desc">Total contributions in 2026: 311 (Jan 1, 2026 - Present). Current streak: 0 days (Nov 27). Longest streak: 48 days (Oct 7 - Nov 23).</desc>
+  <desc id="streak-desc">Total contributions in 2026: 311 (Jan 1, 2026 - Present). Current streak: 0 days (Nov 28). Longest streak: 48 days (Oct 7 - Nov 23).</desc>
   <style>
     @keyframes currstreak {
       0% { font-size: 3px; opacity: 0.2; }
@@ -59,7 +59,7 @@
       <!-- Current Streak range -->
       <g transform="translate(247.5, 145)">
         <text x="0" y="21" stroke-width="0" text-anchor="middle" fill="#8a7c91" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="12px" font-style="normal" style="opacity: 0; animation: fadein 0.5s linear forwards 0.9s">
-          Nov 27
+          Nov 28
         </text>
       </g>
       <!-- Ring around number -->
